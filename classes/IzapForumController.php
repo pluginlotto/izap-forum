@@ -62,7 +62,7 @@ class IzapForumController extends IzapController {
 
     // checking for the parent in the url
     $parent = get_entity($this->url_vars[1]);
-    if (elgg_instanceof($parent, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE)) {
+    if (elgg_instanceof($parent, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_CLASS)) {
       $topic_selected = $parent;
       $options['metadata_name_value_pairs'][] = array('name' => 'parent_guid', 'value' => $topic_selected->guid);
       elgg_push_breadcrumb($topic_selected->title);
@@ -209,7 +209,7 @@ class IzapForumController extends IzapController {
 
   public function actionDiscussion() {
     $subtopic = get_entity($this->url_vars[2]);
-    if (!elgg_instanceof($subtopic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE)) {
+    if (!elgg_instanceof($subtopic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_CLASS)) {
       forward();
     }
     $this->addWidget(GLOBAL_IZAP_FORUM_PLUGIN . '/discussion_info', array('subtopic' => $subtopic));

@@ -20,6 +20,7 @@ class IzapForumTopic extends IzapObject {
 
   public function initializeAttributes() {
     parent::initializeAttributes();
+    $this->attributes['subtype'] = GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE;
   }
 
   public function getAttributesArray() {

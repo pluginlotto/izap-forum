@@ -10,8 +10,8 @@
  * For more information. Contact "Tarun Kumar<tarun@izap.in>"
  */
 $topic = $vars['entity'];
-if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
-  $sticky_class = ($topic->sticky == 'yes') ? 'style="background-color: #EEEEEE;"' : '';
+if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_CLASS)) {
+  $sticky_class = ($topic->_topic == 'yes') ? 'style="background-color: #EEEEEE;"' : '';
 ?>
   <div class="izap_forum_topic" <?php echo $sticky_class ?>>
     <a href="<?php echo $topic->getURL(); ?>">
