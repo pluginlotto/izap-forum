@@ -27,7 +27,7 @@ $posted_array = IzapBase::getPostedAttributes();
 $izap_topic = new IzapForumTopic($posted_array['guid']);
 $izap_topic->setAttributes();
 if ($izap_topic->save()) {
-  if (isset($posted_array['sticky_topic'][0]) && $posted_array['sticky_topic'][0] == 'yes') {
+  if (isset($posted_array['sticky'][0]) && $posted_array['sticky'][0] == 'yes') {
   $izap_topic->sticky_topic = 'yes';
   } else {
       $izap_topic->sticky_topic = 'no';
