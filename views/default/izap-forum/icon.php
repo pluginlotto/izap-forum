@@ -15,9 +15,4 @@
 $topic = elgg_extract('entity',$vars);
 $size = elgg_extract('size',$vars);
 ?>
-<img src = "<?php echo IzapBase::setHref(array(
-   'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-    'action' => 'icon',
-    'page_owner' => FALSE,
-    'vars' => array($topic->guid, $size, )
-));?>default.jpg" />
+<img src = "<?php echo $topic->getIconURL('tiny');?>" />

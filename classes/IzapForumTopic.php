@@ -1,5 +1,4 @@
 <?php
-
 /* * ************************************************
  * PluginLotto.com                                 *
  * Copyrights (c) 2005-2010. iZAP                  *
@@ -92,4 +91,12 @@ class IzapForumTopic extends IzapObject {
     return $url;
   }
 
+  public function getIconURL($size = 'small') {
+    return IzapBase::setHref(array(
+                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+                'action' => 'icon',
+                'page_owner' => FALSE,
+                'vars' => array($this->guid, $size,)
+            )) . $this->time_updated . ".jpg";
+}
 }
