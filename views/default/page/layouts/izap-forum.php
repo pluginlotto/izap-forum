@@ -1,5 +1,4 @@
 <?php
-
 /* * ************************************************
  * PluginLotto.com                                 *
  * Copyrights (c) 2005-2010. iZAP                  *
@@ -12,24 +11,13 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
+?>
+<div class ="elgg-col-1of1 izap-table-cols">
+  <div class="elgg-col elgg-col-1of3">
+<?php echo $vars['sidebar'];?>
+  </div>
 
-$posted_array = IzapBase::getPostedAttributes();
-if (IzapBase::hasFormError()) {
-  register_error(elgg_echo('izap-forum:add_category:form_error'));
-  forward(REFERER);
-}
-
-$izap_category = new IzapForumCategories($posted_array['guid']);
-$izap_category->setAttributes();
-if ($izap_category->save()) {
-  system_message(elgg_echo('izap-forum:add_category:category_saved'));
-  elgg_clear_sticky_form(GLOBAL_IZAP_FORUM_PLUGIN);
-  forward(IzapBase::setHref(array(
-  'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-  'action' => 'index',
-  'page_owner' => false,
-  'vars' => array($izap_category->guid)
-  )));
-}
-
-
+  <div class="elgg-col elgg-col-2of3">
+<?php echo $vars['content'];?>
+  </div>
+</div>

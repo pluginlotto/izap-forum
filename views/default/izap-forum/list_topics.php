@@ -28,8 +28,8 @@ if($vars['topic']) {
 $options['count'] = TRUE;
 $options['limit'] = $vars['limit'];
 $options['order_by_metadata'] = array(
-    array('name' => 'sticky','direction' => 'DESC'),
-    array('name' => 'updation_time', 'direction' => 'DESC')
+   // array('name' => 'sticky','direction' => 'DESC'),
+    //array('name' => 'updation_time', 'direction' => 'DESC')
     );
 $count = elgg_get_entities_from_metadata($options);
 

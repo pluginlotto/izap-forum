@@ -70,14 +70,26 @@ class IzapForumTopic extends IzapObject {
     parent::delete();
   }
 
-  public function  getURL() {
-    return IzapBase::setHref(array(
-        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-        'action' => 'discussion',
-        'vars' => array($this->guid,$this->title)
+  public function getURL() {
+    if ($this->isMainTopic()) {
+      $url = IzapBase::setHref(array(
+                  'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+                  'action' => 'list',
+                  'page_owner' => false,
+                  'vars' => array($this->guid, elgg_get_friendly_title($this->title)),
+                  'trailing_slash' => FALSE
+              ));
+    } else {
+      $url = IzapBase::setHref(array(
+                  'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+                  'action' => 'discussion',
+                  'page_owner' => IzapBase::getContainerUsername($this),
+                  'vars' => array($this->guid, elgg_get_friendly_title($this->title)),
+                  'trailing_slash' => FALSE
+              ));
+    }
 
-    ));
-
+    return $url;
   }
 
-  }
+}

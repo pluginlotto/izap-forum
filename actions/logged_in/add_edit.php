@@ -120,8 +120,9 @@ if ($izap_topic->save()) {
   if ($izap_topic->forum_main_topics == 'yes') {
     forward(IzapBase::setHref(array(
                 'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                'action' => 'list_sub_topics',
-                'vars' => array($izap_topic->guid, $izap_topic->title)
+                'action' => 'list',
+                'page_owner' => false,
+                'vars' => array($izap_topic->guid, elgg_get_friendly_title($izap_topic->title))
                     )
             )
     );
@@ -129,7 +130,7 @@ if ($izap_topic->save()) {
     forward(IzapBase::setHref(array(
                 'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
                 'action' => 'discussion',
-                'vars' => array($izap_topic->guid, $izap_topic->title)
+                'vars' => array($izap_topic->guid, elgg_get_friendly_title($izap_topic->title))
                     )
             )
     );

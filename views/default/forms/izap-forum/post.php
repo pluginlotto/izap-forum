@@ -13,16 +13,16 @@
  */
 
 ?>
-<br />
+
 <h3><?php echo elgg_echo('reply');?></h3>
   <?php
-  $body =IzapBase::input('longtext', array('internalname' => 'attributes[reply]',));
+  $body =elgg_view('input/longtext', array('internalname' => 'attributes[reply]',));
   if(!in_array(get_loggedin_user()->email, (array)$vars['topic']->emails_to_notify)) {
     $body .= IzapBase::input('checkboxes', array('internalname' => 'attributes[notify_me]', 'value' => 'yes', 'options' => array('Notify me the updates of this thread' => 'yes')));
   }
   $body .=elgg_view('input/hidden', array('internalname' => 'attributes[topic_guid]', 'value' => $vars['subtopic']->guid));
   $body .=elgg_view('input/securitytoken');
-  $body .= IzapBase::input('submit', array('value' => elgg_echo('reply')));
+  $body .= elgg_view('input/submit', array('value' => elgg_echo('reply')));
 
 
     echo IzapBase::input('form',array(

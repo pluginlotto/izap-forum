@@ -30,7 +30,18 @@ class IzapForumCategories extends IzapObject {
             'access_id' =>array(),
         );
     }
-    
+
+    public function getURL() {
+      $url = IzapBase::setHref(array(
+          'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+          'action' => 'index',
+          'page_owner' => FALSE,
+          'vars' => array($this->guid, elgg_get_friendly_title($this->title)),
+          'trailing_slash' => FALSE
+      ));
+
+      return $url;
+    }
 
 }
 

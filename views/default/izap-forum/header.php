@@ -16,7 +16,7 @@ $header_array = elgg_extract('header_elements', $vars);
 //$header_array='';
 ?>
 <!--<div class="izap_forum_category_wrapper">-->
-<div class="list_title">
+<div>
     <div class="izap_forum_category_title">
         <?php
         if ($header_array[0]['link']) {
@@ -28,9 +28,7 @@ $header_array = elgg_extract('header_elements', $vars);
             echo $header_array[0]['title'];
         }
         ?>
-        <span>
-            (<?php echo elgg_echo('sorted_by_recent_post'); ?>)
-        </span>
+        
     </div>
 
 <?php for ($i = 1; $i < 4; $i++): ?>

@@ -1,5 +1,4 @@
 <?php
-
 /* * ************************************************
  * PluginLotto.com                                 *
  * Copyrights (c) 2005-2010. iZAP                  *
@@ -12,24 +11,35 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
+?>
+<table class="category_table"><caption class="category_caption"><?php echo elgg_echo('topics'); ?></caption>
+  <tr class ="header_background">
+    <th>
+<?php
+$header_array = array(
+    array(
+        'title' => elgg_echo('title')
+    ),
+    array(
+        'title' => elgg_echo('topics')
+    ),
+    array(
+        'title' => elgg_echo('posts')
+    ),
+    array(
+        'title' => elgg_echo('last_post')
+    ),
+);
+echo elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/header', array('header_elements' => $header_array));
+?>
+    </th>
+  </tr>
+  <tr>
+    <td>
+<?php
+echo $vars['topics'];
+?>
+    </td>
+  </tr>
 
-$posted_array = IzapBase::getPostedAttributes();
-if (IzapBase::hasFormError()) {
-  register_error(elgg_echo('izap-forum:add_category:form_error'));
-  forward(REFERER);
-}
-
-$izap_category = new IzapForumCategories($posted_array['guid']);
-$izap_category->setAttributes();
-if ($izap_category->save()) {
-  system_message(elgg_echo('izap-forum:add_category:category_saved'));
-  elgg_clear_sticky_form(GLOBAL_IZAP_FORUM_PLUGIN);
-  forward(IzapBase::setHref(array(
-  'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-  'action' => 'index',
-  'page_owner' => false,
-  'vars' => array($izap_category->guid)
-  )));
-}
-
-
+</table>
