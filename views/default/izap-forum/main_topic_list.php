@@ -21,7 +21,7 @@ $topics = elgg_extract('topics', $vars);
     echo IzapBase::setHref(array(
         'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
         'action' => 'add_topic',
-    )); ?>">
+    )); ?>" class="elgg-button elgg-button-action">
       <?php echo elgg_echo('izap_forum:add_new_topic') ?></a>
 
   </caption>

@@ -26,7 +26,7 @@ $parent = elgg_Extract('topic', $vars);
           'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
           'action' => 'add_sub_topic',
           'vars' => array(($parent) ? $parent->guid : '')
-      )) ?>">
+                  )) ?>" class="elgg-button elgg-button-action">
 <?php echo elgg_echo('izap_forum:index_add_discussion') ?>
     </a>
     <?php

@@ -14,39 +14,35 @@
 $subtopic = elgg_extract('subtopic', $vars);
 $info = array(
     array(
-    'name'=> elgg_echo('izap_forum:discussion_posts'),
-    'value'=> $subtopic->total_posts),
+        'name' => elgg_echo('izap_forum:discussion_posts'),
+        'value' => $subtopic->total_posts),
     array(
-      'name'=> elgg_echo('izap_forum:discussion_views'),
-    'value'=> IzapBase::getviews($subtopic)),
+        'name' => elgg_echo('izap_forum:discussion_views'),
+        'value' => IzapBase::getviews($subtopic)),
     array(
-        'name' =>  elgg_echo('izap_forum:discussion_created_on'),
+        'name' => elgg_echo('izap_forum:discussion_created_on'),
         'value' => elgg_get_friendly_time($subtopic->time_created)
     ),
-        array(
-            'name'=> elgg_echo('izap_forum:discussion_created_by'),
-            'value' => IzapBase::getOwnerUsername($subtopic),
-        )
-    );
-
+    array(
+        'name' => elgg_echo('izap_forum:discussion_created_by'),
+        'value' => IzapBase::getOwnerUsername($subtopic),
+    )
+);
 ?>
 <table class="discussion_info">
   <caption class="info_caption">
-    <?php echo elgg_echo('izap_forum:discussion_info');
-    ?>
+<?php echo elgg_echo('izap_forum:discussion_info');
+?>
   </caption>
-  <?php foreach($info as $side_data):
-  ?>
+<?php foreach ($info as $side_data):
+?>
   <tr class="info_decorate"><td>
-    <?php
-    echo $side_data['name'].' '.'<b>'.$side_data['value'].'</b>';
-    ?></td>
+<?php
+  echo $side_data['name'] . ' ' . '<b>' . $side_data['value'] . '</b>';
+?></td>
   </tr>
-    <?php
-    endforeach;?>
-    <tr><td><?php echo elgg_echo('izap_forum:discussion_tags');
-    echo elgg_view('output/tags', array('value' => $subtopic->tags));
-  ?></td>
-    </tr>
+<?php endforeach; ?>
+  <tr><td><?php echo elgg_view('output/tags', array('value' => $subtopic->tags)); ?></td>
+  </tr>
 </table>
 

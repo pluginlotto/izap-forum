@@ -14,12 +14,6 @@
 
 ?>
 
-@font-face {
-  font-family: 'Honey';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Honey'), url('<?php echo elgg_get_site_url() . 'mod/' , GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/Michroma.woff'?>') format('woff');
-}
 .categories_list{
 font-weight:bolder;
 }
@@ -68,7 +62,7 @@ line-height:12px;
 }
 
 .izap_forum_topic:hover{
-background-color:#F5F5F5;
+background-color:#DFE7F4;
 }
 
 .izap_forum_topic .title{
@@ -87,6 +81,7 @@ padding-top:30px;
 font-weight:normal;
 font-family:Times new roman;
 font-size:20px;
+min-height: 30px;
 }
 
 .category_caption a {
@@ -114,10 +109,16 @@ background-color:#EEEEEE;
 .category_table tr.decorate {
 border: dotted 1px #DEDEDE;
 background-color:#FFFFFF;
+height: 10px !important;
+}
+
+.category_table tr.decorate a{
+display:block;
 }
 .category_table tr.decorate:hover {
-background: #F5F5F5;
+background: #DFE7F4;
 }
+
 
 .category_table {
 border-top: 1px solid #ccc;
@@ -143,20 +144,20 @@ text-align: right;
 }
 
 .category_table tr.selected {
-color: #FFF;
-background-color: #000;
+color: #000;
+background-color: #DFE7F4;
 padding-left: 10px;
 }
 
 .category_table tr.selected:hover {
 font-weight: bold;
-color: #FFF;
-background-color: #000;
+color: #000;
+background-color: #DFE7F4;
 padding-left: 10px;
 }
 
 .category_table tr.selected a{
-color: #FFF;
+color: #000;
 font-weight: bold !important;
 }
 
@@ -196,7 +197,6 @@ width:430px;
 }
 
 .discussion_title {
-font-family: 'Honey', serif;
 font-size:20px;
 padding-left:10px;
 }
@@ -213,22 +213,18 @@ padding:2px;
 .discussion_info {
 margin-top:30px;
 width:100%;
-background:url(<?php echo elgg_get_site_url().'/mod/'.GLOBAL_IZAP_FORUM_PLUGIN.'/_graphics/info_back.png'?>);
 }
 
 .info_caption {
 margin-bottom:10px;
 padding:17px 0px 7px 0px;
-font-family: 'Honey', serif;
 font-weight:normal;
 font-size:20px;
 border-bottom: #DEDEDE 1px dotted;
 }
 
 .discussion_info tr {
-
 height:30px;
-font-family: 'Honey', serif;
 font-size:12px;
 }
 
