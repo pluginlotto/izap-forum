@@ -17,7 +17,6 @@ class IzapForumController extends IzapController {
 
   public function __construct($page) {
     parent::__construct($page);
-    $this->page_elements['buttons'] = '';
     $this->page_elements['filter'] = '';
     $this->page_layout = 'content';
     IzapBase::loadLib(array(

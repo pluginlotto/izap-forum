@@ -41,9 +41,13 @@ font-size: 14px;
 
 .izap_forum_category_wrapper .stats {
 width: 15%;
-float: left;
+
 }
 
+.image {
+width:20%;
+
+}
 .izap_forum_category_title {
 width: 60%;
 float: left;
@@ -137,7 +141,7 @@ font-size:9px;
 .stats {
 float: left;
 width: 13%;
-text-align: right;
+text-align: center;
 }
 
 .category_table tr.selected {

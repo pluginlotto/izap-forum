@@ -16,7 +16,7 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
   <div class="izap_forum_topic" <?php echo $sticky_class ?>>
     <a href="<?php echo $topic->getURL(); ?>">
       <div class="izap-forum-icon">
-      <?php echo elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/icon', array('entity' => $topic, 'size' => 'small')); ?>
+      <?php echo elgg_view('profile/icon', array('entity' => $topic->getOwnerEntity(), 'size' => 'small', 'override' => true)); ?>
     </div>
   </a>
   <div class="title">
@@ -25,7 +25,7 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
       <b><?php echo ucfirst($topic->getTitle(array('mini' => true, 'max_length' => 50))); ?></b>
     </a>
     <?php if ($topic->canedit(elgg_get_logged_in_user_guid())) {
- ?>
+    ?>
         <a href ="<?php
         echo IzapBase::setHref(array(
             'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
@@ -51,15 +51,15 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
         ));
       }
     ?>
-    <div class="izap-forum-desc">
+      <div class="izap-forum-desc">
       <?php
       echo $topic->getDescription(array('mini' => TRUE, 'max_length' => 75));
       ?>
     </div>
-    
-    </div>
 
-    <div class="stats">
+  </div>
+
+  <div class="stats">
     <?php
       if ($topic->isMainTopic()) {
         echo (int) $topic->total_topics;
@@ -75,20 +75,20 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
         echo (int) $topic->total_posts;
       } else {
         echo (int) IzapBase::getViews($topic);
-        //func_get_views_byizap($topic);
       }
     ?>
     </div>
 
-    <div class="stats" style="width: 18%">
+    <div class="stats image" style="width: 20%">
     <?php
       $user = get_user($topic->last_post_by);
       if ($user) {
-        echo '<a href="' . $user->getURL() . '" title="' . $user->name . '">';
-        echo '</a>';
-
-        echo '<p><a href="' . $user->getURL() . '">' . $user->name . '</a>';
-        echo '<br />' . friendly_time($topic->last_post_at) . '</p>';
+ ?>
+        <a href="'<?php echo $user->getURL() ?>'" >
+          <img src="<?php echo $user->getIconURL('small'); ?>" alt="<?php echo $user->name?>"/>
+    </a><br />
+    <?php
+        echo friendly_time($topic->last_post_at);
       }
     ?>
     </div>
