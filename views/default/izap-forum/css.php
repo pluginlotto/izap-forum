@@ -13,6 +13,13 @@
  */
 
 ?>
+
+@font-face {
+  font-family: 'Honey';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Honey'), url('<?php echo elgg_get_site_url() . 'mod/' , GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/Michroma.woff'?>') format('woff');
+}
 .categories_list{
 font-weight:bolder;
 }
@@ -56,12 +63,12 @@ color: #FFFFFF;
 .izap_forum_topic {
 padding: 1px;
 margin: 1px;
-background-color: #F5F5F5;
+background-color: #FFFFFF;
 line-height:12px;
 }
 
 .izap_forum_topic:hover{
-background-color:#FFFFFF;
+background-color:#F5F5F5;
 }
 
 .izap_forum_topic .title{
@@ -87,10 +94,12 @@ float:right;
 }
 
 .category_table th {
-background-color:#CBC8C8;
+background-color:#4690D6;
 margin:1px;
 padding:5px;
 text-align:center;
+font-weight: bold;
+color: #FFFFFF;
 }
 
 
@@ -104,10 +113,10 @@ background-color:#EEEEEE;
 
 .category_table tr.decorate {
 border: dotted 1px #DEDEDE;
-background-color:#F5F5F5;
+background-color:#FFFFFF;
 }
 .category_table tr.decorate:hover {
-background: #FFFFFF;
+background: #F5F5F5;
 }
 
 .category_table {
@@ -154,7 +163,7 @@ float:left;
 .annotation_icon {
 width:138px;
 height:160px;
-border:1px solid black;
+border:1px solid #B9B9B9;
 padding: 2px;
 -moz-border-radius: 4px;
 background-color: #DEDEDE;
@@ -178,11 +187,13 @@ padding-top:30px;
 
 .annotation_content {
 float:left;
-width:450px;
+width:430px;
 }
 
 .discussion_title {
-font-family:Times new roman;
+font-family: 'Honey', serif;
+font-size:20px;
+padding-left:10px;
 }
 
 .discussions_list {
@@ -193,4 +204,28 @@ padding:5px;
 margin:5px;
 padding:2px;
 }
+
+.discussion_info {
+margin-top:30px;
+width:100%;
+background:url(<?php echo elgg_get_site_url().'/mod/'.GLOBAL_IZAP_FORUM_PLUGIN.'/_graphics/info_back.png'?>);
+}
+
+.info_caption {
+margin-bottom:10px;
+padding:17px 0px 7px 0px;
+font-family: 'Honey', serif;
+font-weight:normal;
+font-size:20px;
+border-bottom: #DEDEDE 1px dotted;
+}
+
+.discussion_info tr {
+
+height:30px;
+font-family: 'Honey', serif;
+font-size:12px;
+}
+
+
 

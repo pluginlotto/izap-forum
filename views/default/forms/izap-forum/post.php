@@ -12,11 +12,12 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-?>
+if(!elgg_is_logged_in()) {
+  return '';
+}
 
-<h3><?php echo elgg_echo('reply');?></h3>
-  <?php
-  $body =elgg_view('input/longtext', array('internalname' => 'attributes[reply]',));
+ $body ='<div class="form_layout"><h3>'.elgg_echo('reply').'</h3>';
+  $body .=elgg_view('input/longtext', array('internalname' => 'attributes[reply]',)).'</div>';
   if(!in_array(get_loggedin_user()->email, (array)$vars['topic']->emails_to_notify)) {
     $body .= IzapBase::input('checkboxes', array('internalname' => 'attributes[notify_me]', 'value' => 'yes', 'options' => array('Notify me the updates of this thread' => 'yes')));
   }

@@ -14,14 +14,14 @@
 ?>
 <div class="discussions">
   <div class="discussion_title">
-<?php echo $vars['title']; ?>
+    <?php echo $vars['title']; ?>
   </div>
 
   <div class="discussions_list">
-<?php echo $vars['discussion_list']; ?>
+    <?php echo $vars['discussion_list']; ?>
   </div>
 
   <div class="reply_form">
-<?php echo $vars['form']; ?>
+    <?php echo $vars['form']; ?>
   </div>
 </div>

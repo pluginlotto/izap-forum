@@ -11,7 +11,7 @@
  */
 $topic = $vars['entity'];
 if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
-  $sticky_class = ($topic->sticky == 'yes') ? 'style="background-color: #E0E0E0;"' : '';
+  $sticky_class = ($topic->sticky == 'yes') ? 'style="background-color: #EEEEEE;"' : '';
 ?>
   <div class="izap_forum_topic" <?php echo $sticky_class ?>>
     <a href="<?php echo $topic->getURL(); ?>">
@@ -29,7 +29,7 @@ if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
         echo $topic->getDescription(array('mini' => TRUE, 'max_length' => 75));
       ?>
     </div>
-  
+  <?php if($topic->canedit(elgg_get_logged_in_user_guid())){?>
       <a href ="<?php
         echo IzapBase::setHref(array(
             'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
@@ -49,6 +49,7 @@ if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
       ?>">
         <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/delete.png' ?>" />
       </a>
+    <?php }?>
     </div>
 
   <div class="stats">

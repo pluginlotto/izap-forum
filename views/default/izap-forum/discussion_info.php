@@ -21,7 +21,7 @@ $info = array(
     'value'=> IzapBase::getviews($subtopic)),
     array(
         'name' =>  elgg_echo('izap_forum:discussion_created_on'),
-        'value' => $subtopic->time_created
+        'value' => elgg_get_friendly_time($subtopic->time_created)
     ),
         array(
             'name'=> elgg_echo('izap_forum:discussion_created_by'),
@@ -30,18 +30,23 @@ $info = array(
     );
 
 ?>
-<table class="category_table">
-  <caption class="category_caption">
-    <?php echo elgg_echo('izap_forum:discussion_info'); ?>
+<table class="discussion_info">
+  <caption class="info_caption">
+    <?php echo elgg_echo('izap_forum:discussion_info');
+    ?>
   </caption>
   <?php foreach($info as $side_data):
   ?>
-  <tr class="decorate"><td>
+  <tr class="info_decorate"><td>
     <?php
-    echo $side_data['value'].$side_data['name'];
+    echo $side_data['name'].' '.'<b>'.$side_data['value'].'</b>';
     ?></td>
   </tr>
     <?php
-    endforeach;
-  ?>
+    endforeach;?>
+    <tr><td><?php echo elgg_echo('izap_forum:discussion_tags');
+    echo elgg_view('output/tags', array('value' => $subtopic->tags));
+  ?></td>
+    </tr>
 </table>
+

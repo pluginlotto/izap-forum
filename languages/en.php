@@ -85,6 +85,11 @@ add_translation('en', array(
 
     //discussion sidebar language
     'izap_forum:discussion_info' => 'Info',
+    'izap_forum:discussion_posts' => 'Posts:',
+    'izap_forum:discussion_views' => 'Views: ',
+    'izap_forum:discussion_created_on' => 'Discussion started on:',
+    'izap_forum:discussion_created_by' => 'Discussion started by:',
+    'izap_forum:discussion_tags' => 'Tags',
 
     //breadcrumb language
 

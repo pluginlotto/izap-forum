@@ -44,6 +44,7 @@ $topics = elgg_extract('topics', $vars);
                 'max_length' =>40)) . ' - ' . (int) $topic->total_topics,
             'title' => $topic->title
                 ));
+        if($topic->canEdit(elgg_get_logged_in_user_guid())){
       ?></td>
           <td>
         <a href ="<?php
@@ -59,7 +60,7 @@ $topics = elgg_extract('topics', $vars);
       </a>
     </td>
     <td><?php
-    if($topic->total_topics<=0){?>
+        if($topic->total_topics<=0 ){?>
       <a href="<?php echo IzapBase::deleteLink(array(
           'guid' => $topic->guid,
           'rurl' => true,
@@ -68,7 +69,7 @@ $topics = elgg_extract('topics', $vars);
           ));
       ?>">
         <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/delete.png' ?>" />
-      </a><?php }?>
+      </a><?php }}?>
     </td>
   </tr>
 
