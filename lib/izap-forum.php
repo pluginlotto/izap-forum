@@ -17,19 +17,14 @@ function izap_create_submenus(){
         'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
         'action' => 'add_category'
     )));
+    if(elgg_is_admin_logged_in ()){
     elgg_register_menu_item('page', $item_add_category);
-
+    }
     $item_list_category=new ElggMenuItem('list_category', elgg_Echo('izap-forum:list_category'), IzapBase::setHref(array(
         'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
         'action' => 'list_category'
     )));
     elgg_register_menu_item('page', $item_list_category);
-
-    $item_add_topic=new ElggMenuItem('add_topic', elgg_Echo('izap-forum:add_topic'), IzapBase::setHref(array(
-        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-        'action' => 'add_topic'
-    )));
-    elgg_register_menu_item('page', $item_add_topic);
 
     $item_index=new ElggMenuItem('index', elgg_Echo('izap-forum:index'), IzapBase::setHref(array(
         'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
@@ -85,4 +80,26 @@ function izap_decrease_total_topics_byizap($entity) {
           )
           )
   );
+}
+
+function  izap_get_latest_forum_topics($options) {
+  $options = array(
+    'limit' => $options['limit'],
+    'annotation_names' => 'forum_post',
+    'offset' => get_input('offset'),
+    'count' => TRUE,
+  );
+
+  $result['count'] = elgg_get_entities_from_annotations($options);
+  unset($options['count']);
+  $result['entities'] = elgg_get_entities_from_annotations($options);
+
+  return $result;
+}
+
+
+
+
+function izap_if_forum_have_subtopics(IzapForumTopics $forum) {
+  return (int) $forum->total_topics;
 }

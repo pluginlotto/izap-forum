@@ -28,7 +28,7 @@ if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
                 'vars' => array($topic->guid,$topic->title)
             )); 
             }?>">
-                <b><?php echo ucfirst($topic->title); ?></b>
+            <b><?php echo ucfirst($topic->title).friendly_time($topic->updation_time); ?></b>
             </a>    
         <?php if (elgg_is_admin_logged_in ()) {
         ?>
@@ -67,9 +67,10 @@ if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
            if ($topic->isMainTopic()) {
                echo (int) $topic->total_posts;
            }
-//      else {
-//        echo (int) func_get_views_byizap($topic);
-//      }
+      else {
+        echo (int) $topic->total_views;
+          //func_get_views_byizap($topic);
+      }
         ?>
        </div>
 

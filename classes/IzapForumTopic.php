@@ -15,28 +15,28 @@
 
 class IzapForumTopic extends IzapObject {
 
-    public function __construct($guid = null) {
-        parent::__construct($guid);
-    }
+  public function __construct($guid = null) {
+    parent::__construct($guid);
+  }
 
-    public function initializeAttributes() {
-        parent::initializeAttributes();
-    }
+  public function initializeAttributes() {
+    parent::initializeAttributes();
+  }
 
-    public function getAttributesArray() {
-        return array(
-            'title' => array(),
-            'description' => array(),
-            'category_guid' => array(),
-            'parent_guid' =>array(),
-            'tags' => array(),
-            'access_id' => array(),
-            'sticky' => array()
-        );
-    }
+  public function getAttributesArray() {
+    return array(
+        'title' => array(),
+        'description' => array(),
+        'category_guid' => array(),
+        'parent_guid' => array(),
+        'tags' => array(),
+        'access_id' => array(),
+        'sticky' => array()
+    );
+  }
 
-    public function isMainTopic() {
-    if($this->forum_main_topics == 'yes') {
+  public function isMainTopic() {
+    if ($this->forum_main_topics == 'yes') {
       return TRUE;
     }
 
@@ -44,28 +44,33 @@ class IzapForumTopic extends IzapObject {
   }
 
   public function delete() {
-      IzapBase::loadlib(array(
-          'plugin' => GLOBAL_IZAP_FORUM_PLUGIN,
-          'lib' => 'izap-forum'
-      ));
+    IzapBase::loadlib(array(
+                'plugin' => GLOBAL_IZAP_FORUM_PLUGIN,
+                'lib' => 'izap-forum'
+            ));
+
     // decrease total count, from parent
-if($this->parent_guid != $this->category_guid){
-    $parent = get_entity($this->parent_guid);
-    izap_decrease_total_topics_byizap($parent);
-}
-    // decrease total count, from category
-    $category = get_entity($this->category_guid);
-    izap_decrease_total_topics_byizap($category);
+    if ($this->parent_guid != $this->category_guid) {
+      $main_topic = get_entity($this->parent_guid);
+      izap_decrease_total_topics_byizap($main_topic);
 
-    // decrease total post count
-    IzapBase::updateMetadata(array(
-            'entity' => $parent,
-            'metadata' => array(
-                    'total_posts' => (int)$parent->total_posts - $this->countAnnotations(),
-            ),
-    ));
+      // decrease total post countdatabase connectivity
+      IzapBase::updateMetadata(array(
+                  'entity' => $main_topic,
+                  'metadata' => array(
+                      'total_posts' => (int) $main_topic->total_posts - $this->countAnnotations('forum_post'),
+                  ),
+              ));
+    } else {
+      // decrease total count, from category
+      $category = get_entity($this->category_guid);
+      izap_decrease_total_topics_byizap($category);
+    }
 
-parent::delete();
+    parent::delete();
   }
 
+  public function  getURL() {
+    parent::getURL();
+  }
 }

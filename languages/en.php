@@ -33,7 +33,12 @@ add_translation('en', array(
     'izap-forum:add_topic:edit' => 'Edit',
     'izap-forum:index' => 'Index',
     'izap-forum:controller:index' => 'Index',
-    'izap-forum:add_sub_topic' => 'Add topic',
+    'izap-forum:add_sub_topic' => 'Add sub topic',
     'izap-forum:delete' => 'Delete',
+    'izap-forum:breadcrumb_index' => 'Index',
+    'izap-forum:breadcrumb_addtopic' => 'Add topic',
+    'izap-forum:post_successfull' => 'Post successfully posted',
+    'izap-forum:breadcrumb_add' => 'Add category',
+    'sorted_by_recent_post' => 'Sorted by recent post',
 
 ));

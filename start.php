@@ -20,6 +20,7 @@ define('GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE','IzapForumTopic');
 elgg_register_event_handler('init', 'system', 'izap_forum_init');
 
 function izap_forum_init() {
+    global $CONFIG;
   izap_plugin_init(GLOBAL_IZAP_FORUM_PLUGIN);
   elgg_register_page_handler(GLOBAL_IZAP_FORUM_PAGEHANDLER, GLOBAL_IZAP_PAGEHANDLER);
 
@@ -30,6 +31,10 @@ function izap_forum_init() {
   )));
 
   elgg_register_menu_item('site', $menu_item);
+  elgg_register_event_handler('create', 'annotation', 'izap_forum_post_hook');
+  elgg_register_event_handler('delete', 'annotation', 'izap_forum_post_delete_hook');
+  elgg_register_admin_menu_item('administer', 'email_template','email_template');
+
 }
 
 /**
@@ -49,4 +54,52 @@ function izap_update_forum_subtype() {
   }
 
 }
+function izap_forum_post_hook($event, $object_type, $object) {
+  $entity = get_entity($object->entity_guid);
+  if($entity instanceof IzapForumTopic) {
+    function tmp_func($entity) {
+        IzapBase::updateMetadata(array(
+            'entity' => $entity,
+            'metadata' => array(
+                'total_posts' => (int)$entity->total_posts + 1,
+                'last_post_by' => elgg_get_logged_in_user_guid(),
+                'last_post_at' => time(),
+              ),
+    ));
+    }
+    // update the post count
+    tmp_func($entity);
+
+    // if it was sub topic, then update the main topic as well
+    if(!$entity->isMainTopic()) {
+      $main_entity = get_entity($entity->parent_guid);
+      tmp_func($main_entity);
+    }
+  }
+  return TRUE;
+}
+
+function izap_forum_post_delete_hook($event, $object_type, $object) {
+  $entity = get_entity($object->entity_guid);
+  if($entity instanceof IzapForumTopic) {
+    function tmp_func($entity) {
+        IzapBase::updateMetadata(array(
+            'entity' => $entity,
+            'metadata' => array(
+                'total_posts' => (int)$entity->total_posts - 1,
+              ),
+    ));
+    }
+    // update the post count
+    tmp_func($entity);
+
+    // if it was sub topic, then update the main topic as well
+    if(!$entity->isMainTopic()) {
+      $main_entity = get_entity($entity->parent_guid);
+      tmp_func($main_entity);
+    }
+  }
+  return TRUE;
+}
+
 
