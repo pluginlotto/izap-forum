@@ -12,7 +12,7 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-$categories = elgg_extract('categories', $vars);
+$topics = elgg_extract('topics', $vars);
 ?>
 <table class="category_table">
   <caption class="category_caption">
@@ -20,7 +20,7 @@ $categories = elgg_extract('categories', $vars);
     <a href="<?php
     echo IzapBase::setHref(array(
         'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-        'action' => 'add_category',
+        'action' => 'add_topic',
     )); ?>">
       <?php echo elgg_echo('izap_forum:add_new_Cat') ?></a>
 
@@ -31,11 +31,11 @@ $categories = elgg_extract('categories', $vars);
     </th>
   </tr>
   <?php
-      foreach ($categories as $category):
+      foreach ($topics as $topic):
   ?>
         <tr class="decorate">
-          <td <?php echo ((int) $vars['current_category']->guid == $category->guid) ? 'class="selected"' : '' ?>>
-<?php echo $category->getLink(array('text' => $category->title . ' - ' . (int)$category->total_topics)); ?>
+          <td <?php echo ((int) $vars['current_topic']->guid == $topic->guid) ? 'class="selected"' : '' ?>>
+<?php echo $topic->getLink(array('text' => $topic->title . ' - ' . (int)$topic->total_topics)); ?>
           </td>
         </tr>
 

@@ -15,9 +15,9 @@
 
 $main_topic = IzapBase::getFormValues(array('entity' => $vars['entity'], 'plugin' => GLOBAL_IZAP_FORUM_PLUGIN));
 $parent = $vars['parent'];
-if (elgg_instanceof($vars['category'], 'object', 'IzapForumCategories')) {
-    $category = $vars['category'];
-}
+//if (elgg_instanceof($vars['category'], 'object', 'IzapForumCategories')) {
+//    $category = $vars['category'];
+//}
 
 $body = IzapBase::input('text', array(
             'input_title' => elgg_echo('izap-forum:add_topic:title'),
@@ -43,19 +43,19 @@ $body .= IzapBase::input('longtext', array(
             'value' => $main_topic->description
         ));
 
-if (elgg_instanceof($category, 'object', 'IzapForumCategories')) {
-    $body .= elgg_view('input/hidden', array(
-                'internalname' => 'attributes[_category_guid]',
-                'value' => $category->guid
-            ));
-} else {
-    $body .= IzapBase::input('pulldown', array(
-                'input_title' => elgg_echo('izap-forum:add_topic:category'),
-                'internalname' => 'attributes[_category_guid]',
-                'options_values' => izap_get_forum_categories(),
-                'value' => $main_topic->category_guid,
-            ));
-}
+//if (elgg_instanceof($category, 'object', 'IzapForumCategories')) {
+//    $body .= elgg_view('input/hidden', array(
+//                'internalname' => 'attributes[_category_guid]',
+//                'value' => $category->guid
+//            ));
+//} else {
+//    $body .= IzapBase::input('pulldown', array(
+//                'input_title' => elgg_echo('izap-forum:add_topic:category'),
+//                'internalname' => 'attributes[_category_guid]',
+//                'options_values' => izap_get_forum_categories(),
+//                'value' => $main_topic->category_guid,
+//            ));
+//}
 
 $body .= IzapBase::input('text', array(
             'input_title' => elgg_echo('izap-forum:add_topic:tag'),

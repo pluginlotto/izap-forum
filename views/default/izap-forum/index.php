@@ -11,7 +11,7 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
-$parent = elgg_Extract('category',$vars);
+$parent = elgg_Extract('topic',$vars);
 ?>
 <table class="category_table"><caption class="category_caption"><?php if($parent){
   echo $parent->title;
@@ -21,10 +21,10 @@ else
 echo elgg_echo('izap_forum:index_all_topics'); ?>
     <a href="<?php echo IzapBase::setHref(array(
      'context'=>GLOBAL_IZAP_FORUM_PAGEHANDLER,
-        'action' =>'add_topic',
+        'action' =>'add_sub_topic',
         'vars' => array(($parent)?$parent->guid:'')
     ))?>">
-      <?php echo elgg_echo('izap_forum:index_add_topic')?>
+      <?php echo elgg_echo('izap_forum:index_add_discussion')?>
     </a>
   </caption>
   <tr class ="header_background">
@@ -51,9 +51,8 @@ echo elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/header', array('header_elements' => 
   <tr>
     <td>
 <?php
-echo $vars['topics'];
+echo $vars['subtopics'];
 ?>
     </td>
   </tr>
-
 </table>

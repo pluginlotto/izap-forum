@@ -74,7 +74,7 @@ class IzapForumTopic extends IzapObject {
     if ($this->isMainTopic()) {
       $url = IzapBase::setHref(array(
                   'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                  'action' => 'list',
+                  'action' => 'index',
                   'page_owner' => false,
                   'vars' => array($this->guid, elgg_get_friendly_title($this->title)),
                   'trailing_slash' => FALSE
