@@ -273,10 +273,11 @@ width:148px;
 height:24px;
 }
 
-.elgg-list {
+.discussions_list .elgg-list {
 border:none;
 }
-.elgg-list > li
+
+.discussions_list .elgg-list > li
 {
 border:none;
 }
