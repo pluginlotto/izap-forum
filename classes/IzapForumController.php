@@ -328,7 +328,7 @@ class IzapForumController extends IzapController {
     $header_array = array();
     $header_array['content_type'] = 'image/jpeg';
     $header_array['file_name'] = elgg_get_friendly_title($topic->title);
-    IzapBase::izapCacheHeaders($header_array);
+    IzapBase::cacheHeaders($header_array);
     echo $content;
   }
 
