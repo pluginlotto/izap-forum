@@ -10,6 +10,8 @@
 * For more information. Contact "Tarun Kumar<tarun@izap.in>"
  */
 
+define('GLOBAL_IZAP_FORUM_PLUGIN', 'izap-forum');
+
 function izap_forum_init() {
   if(is_plugin_enabled('izap-elgg-bridge')) {
     func_init_plugin_byizap(array('plugin' => array('name' => 'izap-forum')));

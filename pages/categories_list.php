@@ -12,8 +12,11 @@
 
 admin_gatekeeper();
 set_context('admin');
+global $IZAPTEMPLATE;
 $title = forum_echo('categories:category_list');
 $area2 = elgg_view_title($title);
 $area2 .= elgg_list_entities(array('type' => 'object', 'subtype' => 'IzapForumCategories', 'offset' => get_input('offset')));
-$body = elgg_view_layout('two_column_left_sidebar', '', $area2);
-page_draw($title, $body);
+$IZAPTEMPLATE->drawPage(array(
+  'title' => $title,
+  'area2' => $area2,
+));
