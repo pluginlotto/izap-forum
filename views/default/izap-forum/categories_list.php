@@ -16,7 +16,7 @@ $categories = elgg_extract('categories', $vars);
 ?>
 <table class="category_table">
   <caption class="category_caption">
-    <?php echo elgg_echo('forum'); ?>
+    <?php echo elgg_echo('izap_forum:category_forum'); ?>
     <a href="<?php
     echo IzapBase::setHref(array(
         'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
@@ -27,7 +27,7 @@ $categories = elgg_extract('categories', $vars);
   </caption>
   <tr>
     <th>
-      <?php echo elgg_echo('izap-forum:categories'); ?>
+      <?php echo elgg_echo('izap-forum:categories_title'); ?>
     </th>
   </tr>
   <?php

@@ -20,7 +20,7 @@ $body = IzapBase::input('text', array(
 ));
 
 $body .= IzapBase::input('longtext', array(
-    'input_title' => elgg_Echo('izap-forum:add_category:description'),
+    'input_title' => elgg_echo('izap-forum:add_category:description'),
     'internalname' => 'attributes[description]',
     'value' => $entity->description
 ));

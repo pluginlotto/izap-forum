@@ -75,11 +75,15 @@ float: left;
 }
 
 .category_caption {
-margin:15px;
+margin-bottom:10px;
 padding-top:30px;
 font-weight:normal;
 font-family:Times new roman;
 font-size:20px;
+}
+
+.category_caption a {
+float:right;
 }
 
 .category_table th {

@@ -13,7 +13,12 @@
  */
 $parent = elgg_Extract('category',$vars);
 ?>
-<table class="category_table"><caption class="category_caption"><?php echo elgg_echo('topics'); ?>
+<table class="category_table"><caption class="category_caption"><?php if($parent){
+  echo $parent->title;
+  echo elgg_Echo('izap_forum:index_cat_topic');
+}
+else 
+echo elgg_echo('izap_forum:index_all_topics'); ?>
     <a href="<?php echo IzapBase::setHref(array(
      'context'=>GLOBAL_IZAP_FORUM_PAGEHANDLER,
         'action' =>'add_topic',
@@ -27,16 +32,16 @@ $parent = elgg_Extract('category',$vars);
 <?php
 $header_array = array(
     array(
-        'title' => elgg_echo('title')
+        'title' => elgg_echo('izap_forum:index_title')
     ),
     array(
-        'title' => elgg_echo('topics')
+        'title' => elgg_echo('izap_forum:index_topics')
     ),
     array(
-        'title' => elgg_echo('posts')
+        'title' => elgg_echo('izap_forum:index_posts')
     ),
     array(
-        'title' => elgg_echo('last_post')
+        'title' => elgg_echo('izap_forum:index_last_post')
     ),
 );
 echo elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/header', array('header_elements' => $header_array));

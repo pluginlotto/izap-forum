@@ -33,7 +33,7 @@ $body .= elgg_view('input/checkboxes', array(
         )) . '<br />';
 
 $body .=IzapBase::input('file',array(
-    'input_title' =>elgg_echo('izap-forum:add_topic_icon'),
+    'input_title' =>elgg_echo('izap-forum:add_topic:icon'),
     'internalname' => 'icon',
 ));
 

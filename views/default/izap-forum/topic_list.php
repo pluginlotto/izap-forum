@@ -16,7 +16,7 @@ $selected = elgg_extract('selected_topic',$vars);
 ?>
 <table class="category_table">
   <caption class="category_caption">
-    <?php echo elgg_echo('izap-forum:topics'); ?>
+    <?php echo get_entity($selected->category_guid)->title;?>
     <a href="<?php echo IzapBase::setHref(array(
         'context' =>GLOBAL_IZAP_FORUM_PAGEHANDLER,
         'action' =>'add_topic',
@@ -26,7 +26,7 @@ $selected = elgg_extract('selected_topic',$vars);
   </caption>
   <tr>
     <th>
-      <?php echo elgg_echo('izap-forum:subtopics'); ?>
+      <?php echo elgg_echo('izap-forum:list_topics'); ?>
     </th>
   </tr>
   <?php

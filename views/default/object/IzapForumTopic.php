@@ -56,7 +56,6 @@ if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
       $user = get_user($topic->last_post_by);
       if ($user) {
         echo '<a href="' . $user->getURL() . '" title="' . $user->name . '">';
-        //echo elgg_view('profile/icon', array('entity' => $user, 'size' => 'tiny', 'override' => TRUE));
         echo '</a>';
 
         echo '<p><a href="' . $user->getURL() . '">' . $user->name . '</a>';

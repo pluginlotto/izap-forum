@@ -79,7 +79,7 @@ class IzapForumController extends IzapController {
         ),
         'order_by' => '',
     );
-    $this->page_elements['title'] = elgg_echo('izap-forum:sub_topic_topics');
+    $this->page_elements['title'] = $parent->title;
     $category_guid = $parent->category_guid;
     $query = array(
         'type' => 'object',

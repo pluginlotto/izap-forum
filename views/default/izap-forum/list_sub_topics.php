@@ -15,7 +15,7 @@ $main_topic = elgg_extract('parent',$vars);
 
 
 ?>
-<table class="category_table"><caption class="category_caption"><?php echo elgg_echo('izap-forum:subtopics');
+<table class="category_table"><caption class="category_caption"><?php echo $main_topic->title;
 ?>
     <a href="<?php echo IzapBase::setHref(array(
         'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
@@ -31,16 +31,16 @@ $main_topic = elgg_extract('parent',$vars);
 <?php
 $header_array = array(
     array(
-        'title' => elgg_echo('title')
+        'title' => elgg_echo('izap_forum_list_title')
     ),
     array(
-        'title' => elgg_echo('replies')
+        'title' => elgg_echo('izap_forum_list_replies')
     ),
     array(
-        'title' => elgg_echo('views')
+        'title' => elgg_echo('izap_forum_list_views')
     ),
     array(
-        'title' => elgg_echo('last_post')
+        'title' => elgg_echo('izap_forum_list_last_post')
     ),
 );
 echo elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/header', array('header_elements' => $header_array));
