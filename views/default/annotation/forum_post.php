@@ -13,7 +13,7 @@
 $owner = get_user($vars['annotation']->owner_guid);
 
 ?>
-<div class="generic_comment"><!-- start of generic_comment div -->
+<div class="generic_comment" id="forum_post_<?php echo $vars['annotation']->id?>"><!-- start of generic_comment div -->
 
 	<div class="generic_comment_icon">
 		<?php
@@ -57,3 +57,13 @@ $owner = get_user($vars['annotation']->owner_guid);
 		?>
 	</div><!-- end of generic_comment_details -->
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+  var url = window.location.href;
+  var post_id = url.split("#")[1];
+
+  if(post_id == 'forum_post_<?php echo $vars['annotation']->id?>') {
+    $('#forum_post_<?php echo $vars['annotation']->id ;?>').effect("highlight", {color: "#FDC453"}, 5000);
+  }
+  });
+</script>

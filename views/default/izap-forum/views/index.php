@@ -17,9 +17,12 @@ foreach($categories as $category):
 <div class="izap_froum_category_wrapper">
   <div class="list_title" >
     <div class="izap_forum_category_title">
-      <a href="<?php echo $vars['url']?>pg/forum/list/<?php echo $category->guid?>/<?php echo friendly_title($category->title)?>">
+      <a href="<?php echo $vars['url']?>pg/forums/list/<?php echo $category->guid?>/<?php echo friendly_title($category->title)?>">
             <?php echo $category->title;?>
       </a>
+      <span style="color: #000; font-style: italic; font-size: 10px; font-weight: lighter;">
+      (<?php echo forum_echo('sorted_by_recent_post');?>)
+      </span>
     </div>
 
     <div class="stats">
@@ -36,7 +39,7 @@ foreach($categories as $category):
     <div class="clearfloat"></div>
   </div>
       <?php
-      echo func_izap_bridge_view('forum/list_topics', array('category' => $category, 'paging' => 'off'));
+      echo func_izap_bridge_view('forum/list_topics', array('category' => $category, 'paging' => FALSE, 'limit' => 6));
       ?>
 </div>
   <?php

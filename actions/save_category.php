@@ -27,7 +27,7 @@ $izap_forum_categories->description = $CONFIG->post_byizap->attributes['descript
 
 if($izap_forum_categories->save()) {
   system_message(forum_echo('message:category_saved'));
-  forward($CONFIG->wwwroot . 'pg/forum/categories_list/');
+  forward($CONFIG->wwwroot . 'pg/forums/categories_list/');
 }else{
   register_error(forum_echo('error:category_not_saved'));
   forward($_SERVER['HTTP_REFERER']);

@@ -9,18 +9,17 @@
 * Under this agreement, No one has rights to sell this script further.
 * For more information. Contact "Tarun Kumar<tarun@izap.in>"
  */
-
 $topic = $vars['topic'];
-$url = $vars['url'] . 'pg/forum/add_topic/' . $topic->guid . '/'
+$url = $vars['url'] . 'pg/forums/add_topic/' . $topic->guid . '/'
         ?>
 <div class="izap_froum_category_wrapper">
   <div class="list_title">
-    <div style="float: left;">
+    <div style="float: left; font-size: 0.9em;">
       <?php echo $vars['navigation']?>
     </div>
-    <?php if($vars['add_action']) {?>
+    <?php if(isloggedin() && $vars['add_action']) {?>
     <div style="float: right;">
-      <a href="<?php echo $url;?>" class="link_white" style="color: #FFFFFF;"><?php echo forum_echo('topic:add');?></a>
+      <a href="<?php echo $url;?>"><?php echo forum_echo('topic:add');?></a>
     </div>
     <?php } ?>
     <div class="clearfloat"></div>

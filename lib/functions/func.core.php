@@ -62,6 +62,16 @@ function func_update_total_topics_byizap($entity) {
   );
 }
 
+function func_decrease_total_topics_byizap($entity) {
+  return func_izap_update_metadata(array(
+          'entity' => $entity,
+          'metadata' => array(
+                  'total_topics' => ((int)$entity->total_topics - 1)
+          )
+          )
+  );
+}
+
 function func_if_forum_have_subtopics(IzapForumTopics $forum) {
   return (int) $category->total_topics;
 }
@@ -112,4 +122,19 @@ function func_izap_forum_post_delete_hook($event, $object_type, $object) {
     }
   }
   return TRUE;
+}
+
+function  func_get_latest_forum_topics($options) {
+  $options = array(
+    'limit' => $options['limit'],
+    'annotation_names' => 'forum_post',
+    'offset' => get_input('offset'),
+    'count' => TRUE,
+  );
+
+  $result['count'] = elgg_get_entities_from_annotations($options);
+  unset($options['count']);
+  $result['entities'] = elgg_get_entities_from_annotations($options);
+
+  return $result;
 }

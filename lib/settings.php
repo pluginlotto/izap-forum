@@ -16,9 +16,9 @@ global $CONFIG;
 return array(
         'path'=>array(
                 'www'=>array(
-                        'page' => $CONFIG->wwwroot . 'pg/forum/',
+                        'page' => $CONFIG->wwwroot . 'pg/forums/',
                         'images' => $CONFIG->wwwroot . 'mod/izap-forum/_graphics/',
-                        'action' => $CONFIG->wwwroot . 'action/izap-forum/',
+                        'action' => $CONFIG->wwwroot . 'action/izap_forum/',
                 ),
                 'dir'=>array(
                         'plugin' => dirname(dirname(__FILE__))."/",
@@ -39,9 +39,9 @@ return array(
         'plugin'=>array(
                 'name'=>"izap-forum",
 
-                'title'=>"Forum",
+                'title'=>"Forums",
 
-                'url_title'=>"forum",
+                'url_title'=>"forums",
 
                 'objects'=>array(
                         'IzapForumTopics'=>array(
@@ -51,30 +51,32 @@ return array(
                 ),
 
                 'actions'=>array(
-                        'izap-forum/save'=>array('file' => "save.php",'public' => FALSE),
-                        'izap-forum/post'=>array('file' => "post.php",'public' => FALSE),
-                        'izap-forum/save_category'=>array('file' => "save_category.php",'admin_only' => TRUE),
+                        'izap_forum/save'=>array('file' => "save.php",'public' => FALSE),
+                        'izap_forum/post'=>array('file' => "post.php",'public' => FALSE),
+                        'izap_forum/save_category'=>array('file' => "save_category.php",'admin_only' => TRUE),
                 ),
 
                 'action_to_plugin_name' => array(
-                  'izap-forum' => 'izap-forum',
+                        'izap_forum' => 'izap-forum',
                 ),
 
-                'page_handler'=>array('forum' => ''),
-
                 'menu'=>array(
-                        'pg/forum/'=>array('title'=>"izap-forum:forum",'public'=>TRUE),
+                        'pg/forums/'=>array('title'=>"izap-forum:forum",'public'=>TRUE),
                 ),
 
                 'submenu'=>array(
-                        'forum' => array(
-                                'pg/forum/'=>array('title'=>"izap-forum:index",'public'=>TRUE),
+                        'forums' => array(
+                                'pg/forums/' => array('title'=>"izap-forum:index",'public'=>TRUE),
+                                'pg/forums/latest/' => array('title'=>"izap-forum:latest",'public'=>TRUE),
+                                'pg/forums/add_category/' => array('title' => 'izap-forum:categories:add', 'admin_only' => TRUE),
+                                'pg/forums/categories_list/' => array('title' => 'izap-forum:categories:list', 'admin_only' => TRUE),
+                                'pg/forums/add_topic/' => array('title' => 'izap-forum:topic:add', 'admin_only' => TRUE),
                         ),
 
                         'admin' => array(
-                                'pg/forum/add_category/' => array('title' => 'izap-forum:categories:add', 'admin_only' => TRUE),
-                                'pg/forum/categories_list/' => array('title' => 'izap-forum:categories:list', 'admin_only' => TRUE),
-                                'pg/forum/add_topic/' => array('title' => 'izap-forum:topic:add', 'public' => FALSE),
+                                'pg/forums/add_category/' => array('title' => 'izap-forum:categories:add', 'admin_only' => TRUE),
+                                'pg/forums/categories_list/' => array('title' => 'izap-forum:categories:list', 'admin_only' => TRUE),
+                                'pg/forums/add_topic/' => array('title' => 'izap-forum:topic:add', 'public' => FALSE),
                         ),
                 ),
 
@@ -91,7 +93,7 @@ return array(
                                         'func_izap_forum_post_delete_hook'
                                 ),
                         ),
-                  
+
                 ),
 
                 'custom' => array(

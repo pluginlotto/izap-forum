@@ -25,14 +25,44 @@ if($vars['topic']) {
 }else {
   $options['metadata_name_value_pairs'][] = array('name' => 'parent_guid', 'value' => $vars['category']->guid);
 }
+$options['metadata_name_value_pairs'][] = array('name' => 'sticky_topic', 'value' => 'no');
 $options['count'] = TRUE;
+$options['limit'] = $vars['limit'];
+$options['order_by_metadata'] = array(
+        array('name' => 'updation_time', 'direction' => 'DESC')
+);
 $count = elgg_get_entities_from_metadata($options);
 
 if($count) {
   unset($options['count']);
   $entities = elgg_get_entities_from_metadata($options);
-  $list = elgg_view_entity_list($entities, $count, 0, 10, FALSE, FALSE, $vars['paging']);
+  $list = elgg_view_entity_list($entities, $count, 0, ($vars['limit']) ? $vars['limit'] : 10, FALSE, FALSE, (isset($vars['paging'])) ? $vars['paging'] : TRUE);
 }
+
+// get sticky topics now
+unset($options);
+$options = array(
+        'type' => 'object',
+        'subtype' => 'IzapForumTopics',
+);
+// if category is provided
+if($vars['category']) {
+  $options['metadata_name_value_pairs'][] = array('name' => 'category_guid', 'value' => $vars['category']->guid);
+}
+
+// if topic is also provied (parent)
+if($vars['topic']) {
+  $options['metadata_name_value_pairs'][] = array('name' => 'parent_guid', 'value' => $vars['topic']->guid);
+}else {
+  $options['metadata_name_value_pairs'][] = array('name' => 'parent_guid', 'value' => $vars['category']->guid);
+}
+$options['metadata_name_value_pairs'][] = array('name' => 'sticky_topic', 'value' => 'yes');
+$options['order_by_metadata'] = array(
+        array('name' => 'updation_time', 'direction' => 'DESC')
+);
+
+$sticky_entities = elgg_get_entities_from_metadata($options);
+$sticky_list = elgg_view_entity_list($sticky_entities, count($sticky_entities), 0, count($sticky_entities), FALSE, FALSE, FALSE);
 
 if($vars['print_header']) {
   ?>
@@ -42,17 +72,20 @@ if($vars['print_header']) {
         <?php
         if($vars['category'] && !$vars['topic']) {
           echo forum_echo('forum');
-        }else{
+        }else {
           echo $vars['topic']->title;
         }
         ?>
+      <span style="color: #000; font-style: italic; font-size: 10px; font-weight: lighter;">
+        (<?php echo forum_echo('sorted_by_recent_post');?>)
+      </span>
     </div>
 
     <div class="stats">
         <?php
         if($vars['category'] && !$vars['topic']) {
           echo forum_echo('topics');
-        }else{
+        }else {
           echo forum_echo('replies');
         }
         ?>
@@ -62,7 +95,7 @@ if($vars['print_header']) {
         <?php
         if($vars['category'] && !$vars['topic']) {
           echo forum_echo('posts');
-        }else{
+        }else {
           echo forum_echo('views');
         }
         ?>
@@ -74,10 +107,12 @@ if($vars['print_header']) {
     <div class="clearfloat"></div>
   </div>
     <?php
+    echo $sticky_list;
     echo $list;
     ?>
 </div>
   <?php
 }else {
+  echo $sticky_list;
   echo $list;
 }

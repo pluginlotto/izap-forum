@@ -45,7 +45,7 @@ $loaded_data = func_load_form_data_byizap($vars['entity']);
     </p>
 
     <?php
-    if(!$parent && isadminloggedin()) {
+    if(!$loaded_data->guid && !$parent && isadminloggedin()) {
       ?>
     <p>
       <label for="topic_category">
@@ -61,10 +61,10 @@ $loaded_data = func_load_form_data_byizap($vars['entity']);
         ?>
     </p>
       <?php
-    }else{
+    }else {
       echo elgg_view('input/hidden', array(
-        'internalname' => 'attributes[parent_guid]',
-        'value' => $parent->guid ? $parent->guid : $loaded_data->parent_guid,
+      'internalname' => 'attributes[category_guid]',
+      'value' => $parent->category_guid ? $parent->category_guid : $loaded_data->category_guid,
       ));
     }
     ?>
@@ -87,19 +87,40 @@ $loaded_data = func_load_form_data_byizap($vars['entity']);
       ?>
     <p>
       <label for="topic_access_id">
-        <?php echo forum_echo('topic:access');?>*
+          <?php echo forum_echo('topic:access');?>*
       </label>
-      <?php
-      echo elgg_view('input/access', array(
-      'internalname' => 'attributes[access_id]',
-      'value' => $loaded_data->access_id ? $loaded_data->access_id : ACCESS_DEFAULT,
-      'internalid' => 'topic_access_id'
-      ));
-      ?>
+        <?php
+        echo elgg_view('input/access', array(
+        'internalname' => 'attributes[access_id]',
+        'value' => $loaded_data->access_id ? $loaded_data->access_id : ACCESS_DEFAULT,
+        'internalid' => 'topic_access_id'
+        ));
+        ?>
     </p>
-    <?php
+      <?php
+    }else {
+      echo elgg_view('input/hidden', array('internalname' => 'attributes[access_id]', 'value' => $parent->access_id));
     }
-    echo elgg_view('input/hidden', array('internalname' => 'attributes[access_id]', 'value' => $parent->access_id));
+    if(isadminloggedin()) {
+      ?>
+    <p>
+        <?php
+        echo elgg_view('input/checkboxes', array(
+        'internalname' => 'attributes[sticky_topic]',
+        'value' => $loaded_data->sticky_topic,
+        'options' =>  array(
+                forum_echo('topic:sticky_topic') => 'yes',
+        ),
+        ));
+        ?>
+    </p>
+      <?php
+    }
+    if(!$parent) {
+      echo elgg_view('input/hidden', array('internalname' => 'attributes[parent_guid]', 'value' => $loaded_data->parent_guid));
+    }else{
+      echo elgg_view('input/hidden', array('internalname' => 'attributes[parent_guid]', 'value' => $parent->guid));
+    }
     echo elgg_view('input/hidden', array('internalname' => 'attributes[guid]', 'value' => $loaded_data->guid));
     echo elgg_view('input/hidden', array('internalname' => 'attributes[plugin]', 'value' => 'izap-forum'));
     echo elgg_view('input/securitytoken');

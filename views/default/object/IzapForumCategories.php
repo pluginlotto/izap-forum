@@ -17,7 +17,7 @@ $category = $vars['entity'];
   <b>
     <?php echo $category->title?>
   </b>
-  - <a href="<?php echo $vars['url']?>pg/forum/add_category/<?php echo $category->guid;?>/"><?php echo forum_echo('edit')?></a>
+  - <a href="<?php echo $vars['url']?>pg/forums/add_category/<?php echo $category->guid;?>/"><?php echo forum_echo('edit')?></a>
   <?php if(!$category->total_topics) {?>
   |
   <?php

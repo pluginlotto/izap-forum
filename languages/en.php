@@ -34,8 +34,8 @@ $english = array(
   'izap-forum:categories:category_list' => 'Categories',
   'izap-forum:categories:list' => 'Forum categories',
   'izap-forum:total_toipcs' => 'Total topics',
-  'izap-forum:' => '',
-  'izap-forum:' => '',
+  'izap-forum:latest' => 'Latest discussion',
+  'izap-forum:sorted_by_recent_post' => 'Sorted by latest post',
 
   // topic
   'izap-forum:topic:add' => 'Add forum topic',
@@ -44,7 +44,8 @@ $english = array(
   'izap-forum:topic:category' => 'Category',
   'izap-forum:topic:tags' => 'Tags',
   'izap-forum:topic:access' => 'Access',
-  'izap-forum:topic:' => '',
+  'izap-forum:topic:sticky_topic' => 'Sticky topic',
+  'izap-forum:topic:edit' => 'Edit',
 
   // errors and messages
   'izap-forum:error:title_blank' => 'Title can\'t be left blank',
@@ -71,7 +72,9 @@ $english = array(
   'izap-forum:' => '',
 
   // river
-  'izap-forum:post_river' => ' has replied on topic: '
+  'izap-forum:post_river' => ' has replied on topic: ',
+  'izap-forum:created' => ' has created new topic: ',
+  'izap-forum:updated' => ' has updated topic: ',
 );
 
 add_translation('en', $english);
