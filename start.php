@@ -15,7 +15,8 @@
 define('GLOBAL_IZAP_FORUM_PLUGIN', 'izap-forum');
 define('GLOBAL_IZAP_FORUM_PAGEHANDLER', 'forum');
 define('GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE', 'IzapForumCategories');
-define('GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE','IzapForumTopic');
+define('GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE','IzapForumTopics');
+define('GLOBAL_IZAP_FORUM_TOPIC_CLASS','IzapForumTopic');
 
 if(is_callable('izap_plugin_init'))
 elgg_register_event_handler('init', 'system', 'izap_forum_init');

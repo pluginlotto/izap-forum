@@ -39,7 +39,7 @@ class IzapForumController extends IzapController {
         'metadata_name' => 'forum_main_topics',
         'metadata_values' => 'yes',
         'order_by_metadata' => array(
-            array('name' => 'sticky', 'direction' => 'DESC'),
+            array('name' => 'sticky_topic', 'direction' => 'DESC'),
             array('name' => 'updation_time', 'direction' => 'DESC')
         ),
         'order_by' => '',
@@ -54,7 +54,7 @@ class IzapForumController extends IzapController {
         'metadata_name' => 'forum_main_topics',
         'metadata_values' => 'no',
         'order_by_metadata' => array(
-            array('name' => 'sticky', 'direction' => 'DESC'),
+            array('name' => 'sticky_topic', 'direction' => 'DESC'),
             array('name' => 'updation_time', 'direction' => 'DESC')
         ),
         'order_by' => '',
@@ -88,7 +88,7 @@ class IzapForumController extends IzapController {
             array('name' => 'parent_guid', 'value' => $this->url_vars[1]),
         ),
         'order_by_metadata' => array(
-            array('name' => 'sticky', 'direction' => 'DESC'),
+            array('name' => 'sticky_topic', 'direction' => 'DESC'),
             array('name' => 'updation_time', 'direction' => 'DESC')
         ),
         'order_by' => '',
@@ -103,7 +103,7 @@ class IzapForumController extends IzapController {
             array('name' => 'forum_main_topics', 'value' => 'yes'),
         ),
         'order_by_metadata' => array(
-            array('name' => 'sticky', 'direction' => 'DESC'),
+            array('name' => 'sticky_topic', 'direction' => 'DESC'),
             array('name' => 'updation_time', 'direction' => 'DESC')
         ),
         'order_by' => ''
