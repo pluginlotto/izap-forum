@@ -1,22 +1,51 @@
 <?php
-/**************************************************
-* iZAP Web Solutions                              *
-* Copyrights (c) 2005-2009. iZAP Web Solutions.   *
-* All rights reserved                             *
-***************************************************
-* @author iZAP Team "<support@izap.in>"
-* @link http://www.izap.in/
-* Under this agreement, No one has rights to sell this script further.
-* For more information. Contact "Tarun Kumar<tarun@izap.in>"
+
+/* * ************************************************
+ * PluginLotto.com                                 *
+ * Copyrights (c) 2005-2010. iZAP                  *
+ * All rights reserved                             *
+ * **************************************************
+ * @author iZAP Team "<support@izap.in>"
+ * @link http://www.izap.in/
+ * Under this agreement, No one has rights to sell this script further.
+ * For more information. Contact "Tarun Jangra<tarun@izap.in>"
+ * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
+ * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+
+define('GLOBAL_IZAP_FORUM_PLUGIN', 'izap-forum');
+define('GLOBAL_IZAP_FORUM_PAGEHANDLER', 'forum');
+define('GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE', 'IzapForumCategories');
+define('GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE','IzapForumTopic');
+
+elgg_register_event_handler('init', 'system', 'izap_forum_init');
+
 function izap_forum_init() {
-  if(is_plugin_enabled('izap-elgg-bridge')) {
-    func_init_plugin_byizap(array('plugin' => array('name' => 'izap-forum')));
-  }else{
-    register_error('This plugin needs izap-elgg-bridge');
-    disable_plugin('izap-forum');
-  }
+    izap_plugin_init(GLOBAL_IZAP_FORUM_PLUGIN);
+    elgg_register_page_handler(GLOBAL_IZAP_FORUM_PAGEHANDLER, GLOBAL_IZAP_PAGEHANDLER);
+
+    $menu_item = new ElggMenuItem('forum', elgg_Echo('izap-forum:forum'), IzapBase::setHref(array(
+                        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+                        'action' => 'index',
+                        'page_owner' => FALSE
+                    )));
+
+    elgg_register_menu_item('site', $menu_item);
 }
 
-register_elgg_event_handler('init', 'system', 'izap_forum_init');
+function izap_update_forum_subtype() {
+    if(get_subtype_id('object', GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE)) {
+        update_subtype('object', GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE, GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE);
+    } else {
+        add_subtype('object', GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE, GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE);
+    }
+
+    if(get_subtype_id('object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE)) {
+        update_subtype('object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE);
+    } else {
+        add_subtype('object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE);
+    }
+
+}
+

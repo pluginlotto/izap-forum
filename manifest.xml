@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin_manifest>
-  <field key="author" value="iZAP" />
-  <field key="version" value="0.1" />
-  <field key="description" value="Forum for elgg" />
-  <field key="website" value="http://www.izap.in/" />
-  <field key="copyright" value="(C) iZAP Web Solutions" />
-  <field key="licence" value="Commercial" />
-  <field key="elgg_version" value="2010030101" />
+<plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
+    <name>iZAP forum</name>
+    <author>iZAP Team</author>
+    <version>1.0</version>
+    <blurb>provides the forum</blurb>
+    <description>a plugin for the forum discussions</description>
+    <website>http://www.pluginlotto.com/pg/store</website>
+    <copyright>(C) iZAP Web Solutions</copyright>
+    <license>GNU Public License version 2</license>
+
+    <requires>
+        <type>elgg_version</type>
+        <version>2011032200</version>
+    </requires>
+
+    <requires>
+        <type>plugin</type>
+        <name>izap-elgg-bridge</name>
+        <version>2.0</version>
+    </requires>
+    <on_activate>izap_update_forum_subtype</on_activate>
+    <category>iZAP</category>
+    <admin_interface>advanced</admin_interface>
 </plugin_manifest>
