@@ -77,4 +77,8 @@ float: left;
 background: url("<?php echo func_get_www_path_byizap(array('plugin' => 'izap-forum', 'type' => 'images')); ?>river_post.png") no-repeat scroll left -1px transparent;
 }
 
+.river_object_IzapForumTopics_created{
+background: url("<?php echo func_get_www_path_byizap(array('plugin' => 'izap-forum', 'type' => 'images')); ?>river_post.png") no-repeat scroll left -1px transparent;
+}
+
 /* END: Css for izap-forum */
