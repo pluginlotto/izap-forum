@@ -10,7 +10,6 @@
 * For more information. Contact "Tarun Kumar<tarun@izap.in>"
  */
 
-global $IZAPTEMPLATE;
 $query = get_input('qry');
 /* in this case $query is defined as
  * $query[0] -> category_guid
@@ -40,13 +39,11 @@ if(!is_array($array_2_send)) {
 }
 
 $array_2_send['navigation'] = $title_links;
-$area2 .= $IZAPTEMPLATE->render('forum/action_bar', $array_2_send);
+$area2 .= func_izap_bridge_view('forum/action_bar', $array_2_send);
 $array_2_send['print_header'] = TRUE;
 $array_2_send['limit'] = 20;
-$area2 .= $IZAPTEMPLATE->render('forum/list_topics', $array_2_send);
+$area2 .= func_izap_bridge_view('forum/list_topics', $array_2_send);
 global $autofeed;
 $autofeed = FALSE;
-$IZAPTEMPLATE->drawPage(array(
-  'title' => $title,
-  'area2' => $area2
-));
+$body = elgg_view_layout('two_column_left_sidebar', '', $area2);
+page_draw($title, $body);

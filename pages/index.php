@@ -10,13 +10,10 @@
 * For more information. Contact "Tarun Kumar<tarun@izap.in>"
  */
 
-global $IZAPTEMPLATE;
 $title = forum_echo('index');
 $area2 = elgg_view_title($title);
-$area2 .= $IZAPTEMPLATE->render('forum/index');
+$area2 .= func_izap_bridge_view('forum/index');
 global $autofeed;
 $autofeed = FALSE;
-$IZAPTEMPLATE->drawPage(array(
-  'area2' => $area2,
-  'title' => $title,
-));
+$body = elgg_view_layout('two_column_left_sidebar', '', $area2);
+page_draw($title, $body);

@@ -10,7 +10,6 @@
 * For more information. Contact "Tarun Kumar<tarun@izap.in>"
  */
 
-global $IZAPTEMPLATE;
 $query = get_input('qry');
 /* in this case $query is defined as
  * $query[0] -> category_guid
@@ -53,19 +52,14 @@ if(!is_array($array_2_send)) {
 }
 
 if(get_input('view') == 'rss') {
-  $IZAPTEMPLATE->drawPage(array(
-          'title' => $title,
-          'area2' => list_annotations($topic->guid, 'forum_post')
-  ));
+  page_draw($title, elgg_view_layout('two_column_left_sidebar', '', list_annotations($topic->guid, 'forum_post')));
 }else {
   $array_2_send['navigation'] = $title_links;
-  $area2 .= $IZAPTEMPLATE->render('forum/action_bar', $array_2_send);
+  $area2 .= func_izap_bridge_view('forum/action_bar', $array_2_send);
   $area2 .= '<div class="contentWrapper izap_froum_topic_post_wrapper">';
-  $area2 .= $IZAPTEMPLATE->render('forum/topic', $array_2_send);
+  $area2 .= func_izap_bridge_view('forum/topic', $array_2_send);
   $area2 .= '</div>';
   $body = elgg_view_layout('two_column_left_sidebar', '', $area2);
-  $IZAPTEMPLATE->drawPage(array(
-          'title' => $title,
-          'area2' => $area2
-  ));
+  page_draw($title, $body);
+  func_increment_views_byizap($topic);
 }

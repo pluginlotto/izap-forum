@@ -10,13 +10,4 @@
 * For more information. Contact "Tarun Kumar<tarun@izap.in>"
  */
 
-function izap_forum_init() {
-  if(is_plugin_enabled('izap-elgg-bridge')) {
-    func_init_plugin_byizap(array('plugin' => array('name' => 'izap-forum')));
-  }else{
-    register_error('This plugin needs izap-elgg-bridge');
-    disable_plugin('izap-forum');
-  }
-}
-
-register_elgg_event_handler('init', 'system', 'izap_forum_init');
+gatekeeper();

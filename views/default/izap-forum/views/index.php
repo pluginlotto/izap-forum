@@ -20,7 +20,7 @@ foreach($categories as $category):
       <a href="<?php echo $vars['url']?>pg/forums/list/<?php echo $category->guid?>/<?php echo friendly_title($category->title)?>">
             <?php echo $category->title;?>
       </a>
-      <span style="color: #000; font-style: italic; font-size: 10px; font-weight: lighter;">
+      <span>
       (<?php echo forum_echo('sorted_by_recent_post');?>)
       </span>
     </div>

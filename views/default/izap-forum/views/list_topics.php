@@ -76,7 +76,7 @@ if($vars['print_header']) {
           echo $vars['topic']->title;
         }
         ?>
-      <span style="color: #000; font-style: italic; font-size: 10px; font-weight: lighter;">
+      <span>
         (<?php echo forum_echo('sorted_by_recent_post');?>)
       </span>
     </div>

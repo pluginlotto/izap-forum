@@ -79,19 +79,7 @@ function func_if_forum_have_subtopics(IzapForumTopics $forum) {
 function func_izap_forum_post_hook($event, $object_type, $object) {
   $entity = get_entity($object->entity_guid);
   if($entity instanceof IzapForumTopics) {
-    // update the post count
-    func_izap_update_metadata(array(
-            'entity' => $entity,
-            'metadata' => array(
-                'total_posts' => (int)$entity->total_posts + 1,
-                'last_post_by' => get_loggedin_userid(),
-                'last_post_at' => time(),
-              ),
-    ));
-    
-    // if it was sub topic, then update the main topic as well
-    if(!$entity->isMainTopic()) {
-      $main_entity = get_entity($entity->parent_guid);
+    function tmp_func($entity) {
       func_izap_update_metadata(array(
             'entity' => $entity,
             'metadata' => array(
@@ -101,6 +89,14 @@ function func_izap_forum_post_hook($event, $object_type, $object) {
               ),
     ));
     }
+    // update the post count
+    tmp_func($entity);
+    
+    // if it was sub topic, then update the main topic as well
+    if(!$entity->isMainTopic()) {
+      $main_entity = get_entity($entity->parent_guid);
+      tmp_func($main_entity);
+    }
   }
   return TRUE;
 }
@@ -108,23 +104,21 @@ function func_izap_forum_post_hook($event, $object_type, $object) {
 function func_izap_forum_post_delete_hook($event, $object_type, $object) {
   $entity = get_entity($object->entity_guid);
   if($entity instanceof IzapForumTopics) {
-    // update the post count
-    func_izap_update_metadata(array(
-            'entity' => $entity,
-            'metadata' => array(
-                'total_posts' => (int)$entity->total_posts - 1,
-              ),
-    ));
-
-    // if it was sub topic, then update the main topic as well
-    if(!$entity->isMainTopic()) {
-      $main_entity = get_entity($entity->parent_guid);
+    function tmp_func($entity) {
       func_izap_update_metadata(array(
             'entity' => $entity,
             'metadata' => array(
                 'total_posts' => (int)$entity->total_posts - 1,
               ),
     ));
+    }
+    // update the post count
+    tmp_func($entity);
+
+    // if it was sub topic, then update the main topic as well
+    if(!$entity->isMainTopic()) {
+      $main_entity = get_entity($entity->parent_guid);
+      tmp_func($main_entity);
     }
   }
   return TRUE;

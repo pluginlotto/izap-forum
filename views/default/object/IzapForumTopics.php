@@ -17,7 +17,7 @@ if($topic instanceof IzapForumTopics) {
 <div class="izap_forum_topic" <?php echo $sticky_class?>>
   <div class="title">
     <a href="<?php echo $topic->getUrl(); ?>">
-      <b><?php echo ucfirst($topic->getTitle()); ?></b>
+      <b><?php echo ucfirst($topic->title); ?></b>
     </a>
       <?php
       if(isadminloggedin()) {
@@ -29,7 +29,7 @@ if($topic instanceof IzapForumTopics) {
       }
       ?>
     <br />
-      <?php $max_len = 200; echo substr(filter_var($topic->description, FILTER_SANITIZE_STRING), 0, $max_len) . ((strlen($topic->getDescription()) > $max_len) ? ' ...' : ''); ?>
+      <?php $max_len = 200; echo substr(filter_var($topic->description, FILTER_SANITIZE_STRING), 0, $max_len) . ((strlen($topic->description) > $max_len) ? ' ...' : ''); ?>
   </div>
 
   <div class="stats">

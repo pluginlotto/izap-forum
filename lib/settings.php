@@ -38,10 +38,11 @@ return array(
 
         'plugin'=>array(
                 'name'=>"izap-forum",
-                'layout' => 'two_column_left_sidebar',
+
                 'title'=>"Forums",
+
                 'url_title'=>"forums",
-                
+
                 'objects'=>array(
                         'IzapForumTopics'=>array(
                                 'class'=>"IzapForumTopics",

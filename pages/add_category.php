@@ -13,15 +13,12 @@
 
 admin_gatekeeper();
 set_context('admin');
-global $IZAPTEMPLATE;
 $query_params = get_input('qry');
 if(isset($query_params[0]) && ($entity = get_entity($query_params[0]))) {
   $IzapForumCategory = $entity;
 }
 $title = forum_echo('categories:add_category');
 $form = elgg_view_title($title);
-$form .= $IZAPTEMPLATE->render('forms/add_category', array('entity' => $IzapForumCategory));
-$IZAPTEMPLATE->drawPage(array(
-  'title' => $title,
-  'area2' => $form,
-));
+$form .= func_izap_bridge_view('forms/add_category', array('plugin' => 'izap-forum', 'entity' => $IzapForumCategory));
+$body = elgg_view_layout('two_column_left_sidebar', '', $form);
+page_draw($title, $body);
