@@ -52,10 +52,19 @@ if ($subtopic_post) {
         $send_array['from_username'] = $CONFIG->site->name;
         $send_array['from'] = $CONFIG->site->email;
         $send_array['msg'] = elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/email_template', array('topic' => $subtopic_post, 'post' => $latest_comment[0]));
+       // c($send_array);
         IzapBase::sendMail($send_array);
       }
   }
-  add_to_river('river/'.GLOBAL_IZAP_FORUM_PLUGIN,'/reply_posted','posted', elgg_get_logged_in_user_guid(), $subtopic_post->guid, '','',$latest_comment[0]->id);
+  add_to_river(
+          'river/'.GLOBAL_IZAP_FORUM_PLUGIN . '/reply_posted' ,
+          'posted',
+          elgg_get_logged_in_user_guid(),
+          $subtopic_post->guid,
+          '',
+          '',
+          $latest_comment[0]->id);
+  
   system_message(elgg_Echo('izap-forum:post_successfull'));
 } else {
   register_error(elgg_Echo('izap-forum:post_error'));

@@ -71,6 +71,13 @@ class IzapForumTopic extends IzapObject {
   }
 
   public function  getURL() {
-    parent::getURL();
+    return IzapBase::setHref(array(
+        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+        'action' => 'discussion',
+        'vars' => array($this->guid,$this->title)
+
+    ));
+
   }
-}
+
+  }

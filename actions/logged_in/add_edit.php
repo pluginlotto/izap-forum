@@ -12,6 +12,8 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
+
+
 IzapBase::loadlib(array(
             'plugin' => GLOBAL_IZAP_FORUM_PLUGIN,
             'lib' => 'izap-forum'
@@ -22,7 +24,6 @@ if (IzapBase::hasFormError()) {
   forward($_SERVER['HTTP_REFERER']);
 }
 $posted_array = IzapBase::getPostedAttributes();
-
 $izap_topic = new IzapForumTopic($posted_array['guid']);
 $izap_topic->setAttributes();
 if ($izap_topic->save()) {
@@ -36,7 +37,7 @@ if ($izap_topic->save()) {
 //  echo $izap_topic->parent_guid;
 //  exit;
 //  
-  if ($izap_topic->parent_guid == $izap_topic->category_guid || ((int)$izap_topic->parent_guid == 0 && (int) $izap_topic->category_guid > 0)) {
+  if ($izap_topic->parent_guid == $izap_topic->category_guid || ((int) $izap_topic->parent_guid == 0 && (int) $izap_topic->category_guid > 0)) {
     $izap_topic->forum_main_topics = 'yes';
     $izap_topic->updation_time = time();
     if (!$izap_topic->parent_guid) {
@@ -62,6 +63,59 @@ if ($izap_topic->save()) {
   }
 
   elgg_clear_sticky_form(GLOBAL_IZAP_FORUM_PLUGIN);
+
+  if (isset($_FILES) && substr_count($_FILES['icon']['type'], 'image/')) {
+    IzapBase::saveFile(array(
+                'destination' => $image_name = 'forumtopics/' . $izap_topic->guid . '/icon',
+                'content' => file_get_contents($_FILES['icon']['tmp_name']),
+                'owner_guid' => $izap_topic->owner_guid,
+                'create_thumbs' => TRUE
+            ));
+//    $image = new ElggFile();
+//
+//    $image->owner_guid = $izap_topic->owner_guid;
+//    $image->setFilename($image_name. '.jpg');
+//
+//    $image->open("write");
+//    $image->write();
+//    $image->close();
+//
+//    $thumbtiny = get_resized_image_from_existing_file($image->getFilenameOnFilestore(), 25, 25, true);
+//    $thumbsmall = get_resized_image_from_existing_file($image->getFilenameOnFilestore(), 40, 40, true);
+//    $thumbmedium = get_resized_image_from_existing_file($image->getFilenameOnFilestore(), 100, 100, true);
+//    $thumblarge = get_resized_image_from_existing_file($image->getFilenameOnFilestore(), 200, 200, false);
+//    if ($thumbtiny) {
+//
+//      $thumb = new ElggFile();
+//      $thumb->owner_guid = $izap_topic->owner_guid;
+//      $thumb->setMimeType('image/jpeg');
+//
+//      $thumb->setFilename($image_name . "tiny.jpg");
+//      $thumb->open("write");
+//      $thumb->write($thumbtiny);
+//      //echo $thumb->getFilenameOnFilestore();exit;
+//      $thumb->close();
+//
+//      $thumb->setFilename($image_name . "small.jpg");
+//      $thumb->open("write");
+//      $thumb->write($thumbsmall);
+//      $thumb->close();
+//
+//      $thumb->setFilename($image_name . "medium.jpg");
+//      $thumb->open("write");
+//      $thumb->write($thumbmedium);
+////      echo $thumb->getFilenameOnFilestore();
+////    exit;
+//      $thumb->close();
+//
+//      $thumb->setFilename($image_name . "large.jpg");
+//      $thumb->open("write");
+//      $thumb->write($thumblarge);
+//      $thumb->close();
+//    }
+  }
+
+
   system_message(elgg_echo('izap-forum:add_topic:topic_successfull'));
   if ($izap_topic->forum_main_topics == 'yes') {
     forward(IzapBase::setHref(array(

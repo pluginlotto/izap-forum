@@ -32,6 +32,11 @@ $body .= elgg_view('input/checkboxes', array(
             )
         )) . '<br />';
 
+$body .=IzapBase::input('file',array(
+    'input_title' =>elgg_echo('izap-forum:add_topic_icon'),
+    'internalname' => 'icon',
+));
+
 $body .= IzapBase::input('longtext', array(
             'input_title' => elgg_echo('izap-forum:add_topic:description'),
             'internalname' => 'attributes[description]',
@@ -84,7 +89,8 @@ $body .= elgg_view('input/hidden', array(
 
 echo IzapBase::input('form', array(
     'body' => $body,
-    'action' => IzapBase::getFormAction('add_edit', GLOBAL_IZAP_FORUM_PLUGIN)
+    'action' => IzapBase::getFormAction('add_edit', GLOBAL_IZAP_FORUM_PLUGIN),
+    'enctype' =>'multipart/form-data'
 ));
 
 

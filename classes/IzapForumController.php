@@ -200,12 +200,15 @@ class IzapForumController extends IzapController {
 
   public function actionDiscussion() {
     $subtopic = get_entity($this->url_vars[2]);
+    if (!elgg_instanceof($subtopic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE)) {
+      forward();
+    }
     $this->page_elements['title'] = $subtopic->title;
-    $this->addButton(array(
-        'title' => elgg_echo('izap-forum:delete'),
-        'menu_name' => 'title',
-        'url' => IzapBase::deleteLink(array('guid' => $this->url_vars[2], 'only_url' => TRUE))
-    ));
+//    $this->addButton(array(
+//        'title' => elgg_echo('izap-forum:delete'),
+//        'menu_name' => 'title',
+//        'url' => IzapBase::deleteLink(array('guid' => $this->url_vars[2], 'only_url' => TRUE))
+//    ));
 
     $category = get_entity($subtopic->category_guid);
     elgg_push_breadcrumb($category->title, IzapBase::setHref(array(
@@ -226,10 +229,34 @@ class IzapForumController extends IzapController {
                 'action' => 'discussion',
                 'vars' => array($subtopic->guid, $subtopic->title)
             )));
-
-    $this->page_elements['content'] = elgg_list_annotations(array('guid' => $subtopic->guid, 'metastring_name' => 'forum_post'));
+    IzapBase::increaseViews($subtopic);
+    $this->page_elements['content'] = '<p align="right">' . IzapBase::deleteLink(array('guid' => $this->url_vars[2], 'rurl' => IzapBase::setHref(array(
+                    'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+                    'action' => 'list_sub_topics',
+                    'vars' => array($subtopic->parent_guid)
+                )))) . '</p>';
+    $this->page_elements['content'] .= elgg_list_annotations(array('guid' => $subtopic->guid, 'metastring_name' => 'forum_post'));
     $this->page_elements['content'] .= elgg_view('forms/' . GLOBAL_IZAP_FORUM_PLUGIN . '/post', array('subtopic' => $subtopic));
     $this->drawPage();
+  }
+
+  public function actionIcon() {
+    $topic = get_entity($this->url_vars[1]);
+    $size = $this->url_vars[2];
+    
+    //c($this->url_vars);
+    $image_name = 'forumtopics/' . $topic->guid . '/icon' . (($size) ? $size : 'small').'.jpg';
+   $content = IzapBase::getFile(array(
+        'source' => $image_name,
+        'owner_guid' =>$topic->owner_guid,
+    ));
+    $header_array = array();
+    $header_array['content_type'] = 'image/jpeg';
+    $header_array['file_name'] = $topic->title;
+    $header_array['expire_time'] = 60 * 60 * 60;
+    IzapBase::izapCacheHeaders($header_array);
+    echo $content;
+
   }
 
 }

@@ -15,6 +15,7 @@ if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
 ?>
     <div class="izap_forum_topic" <?php echo $sticky_class ?>>
         <div class="title">
+          <?php echo elgg_view(GLOBAL_IZAP_FORUM_PLUGIN.'/icon', array('entity' => $topic,'size' => 'small'));?>
             <a href="<?php if($topic->forum_main_topics=='yes'){
                 echo IzapBase::setHref(array(
                 'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
@@ -28,7 +29,8 @@ if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
                 'vars' => array($topic->guid,$topic->title)
             )); 
             }?>">
-            <b><?php echo ucfirst($topic->title).friendly_time($topic->updation_time); ?></b>
+            <b><?php
+            echo ucfirst($topic->title); ?></b>
             </a>    
         <?php if (elgg_is_admin_logged_in ()) {
         ?>
@@ -68,7 +70,7 @@ if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
                echo (int) $topic->total_posts;
            }
       else {
-        echo (int) $topic->total_views;
+        echo (int) IzapBase::getViews($topic);
           //func_get_views_byizap($topic);
       }
         ?>
