@@ -48,14 +48,14 @@ if ($izap_topic->save()) {
   elgg_clear_sticky_form(GLOBAL_IZAP_FORUM_PLUGIN);
 
   if (isset($_FILES) && substr_count($_FILES['icon']['type'], 'image/')) {
-    IzapBase::saveFile(array(
+    IzapBase::saveImageFile(array(
                 'destination' => 'forumtopics/' . $izap_topic->guid . '/icon',
                 'content' => file_get_contents($_FILES['icon']['tmp_name']),
                 'owner_guid' => $izap_topic->owner_guid,
                 'create_thumbs' => TRUE
             ));
   }else if($izap_topic->parent_guid){
-    IzapBase::saveFile(array(
+    IzapBase::saveImageFile(array(
                 'destination' => 'forumtopics/' . $izap_topic->guid . '/icon',
                 'content' => IzapBase::getfile(array('source' => 'forumtopics/' . $izap_topic->parent_guid . '/icon.jpg','owner_id' => get_entity($izap_topic->parent_guid)->owner_guid)),
                 'owner_guid' => $izap_topic->owner_guid,
