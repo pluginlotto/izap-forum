@@ -31,7 +31,7 @@ if($subtopic_post){
         $email_array[] = get_loggedin_user()->email;
         $new_array = array_unique($email_array);
         IzapBase::updateMetadata(array('entity' => $subtopic_post,'metadata' => array('emails_to_notify' => $new_array)));
-
+    }
         //send emails to all the involved users about the post
         if($subtopic_post->emails_to_notify && sizeof($subtopic_post->emails_to_notify)){
             $email_ids = $subtopic_post->emails_to_notify;
@@ -42,13 +42,20 @@ if($subtopic_post){
       $send_array['from_username'] = $CONFIG->site->name;
       $send_array['from'] = $CONFIG->site->email;
       $send_array['msg'] = "
-          There is new reply on topic: <a href=\"".$izapForumTopics->getUrl()."#forum_post_".$latest_comment->id."\"><b>".$izapForumTopics->title."</b></a>
+          There is new reply on topic: <a href=\"".$izapForumTopics->getUrl()."#forum_post_".$latest_comment[0]->id."\"><b>".$izapForumTopics->title."</b></a>
             by: <a href=\"".get_loggedin_user()->getUrl()."\" >".get_loggedin_user()->name."</a><p>\"" . $CONFIG->post_byizap->attributes['reply'] . "\"</p> Visit : " . $izapForumTopics->getUrl();
 
       $send_array['msg'] = elgg_view('izap-skin/email_template', array('msg' => $send_array['msg']));
       IzapBase::sendMail($send_array);
+      
     }
 
         }
-    }
+        //add_to_river('river/'.GLOBAL_IZAP_FORUM_PLUGIN,'/reply_posted','posted', elgg_get_logged_in_user_guid(), $subtopic_post->guid, '','',$latest_comment[0]->id);
+        system_message(elgg_Echo('izap-forum:post_successfull'));
 }
+else{
+    register_error(elgg_Echo('izap-forum:post_error'));
+}
+forward(REFERER);
+exit;

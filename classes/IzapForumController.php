@@ -128,14 +128,13 @@ class IzapForumController extends IzapController {
     public function actionDiscussion() {
         $subtopic = get_entity($this->url_vars[2]);
         $this->page_elements['title'] = $subtopic->title;
-        $this->page_elements['title'] .= IzapBase::deleteLink(array('guid' => $this->url_vars[2]));
-//        $this->addButton(array(
-//            'title' => elgg_echo('izap-forum:delete'),
-//            'menu_name' => 'title',
-//            'url' => IzapBase::deleteLink(array('guid' => $this->url_vars[2], 'only_url' => TRUE))
-//        ));
+        $this->addButton(array(
+            'title' => elgg_echo('izap-forum:delete'),
+            'menu_name' => 'title',
+            'url' => IzapBase::deleteLink(array('guid' => $this->url_vars[2], 'only_url' => TRUE))
+        ));
 
-        $this->page_elements['content'] = elgg_list_annotations(array($subtopic->guid,'forum_post'));
+        $this->page_elements['content'] = elgg_list_annotations(array('guid' => $subtopic->guid,'metastring_name' => 'forum_post'));
         $this->page_elements['content'] .= elgg_view('forms/'.GLOBAL_IZAP_FORUM_PLUGIN.'/post',array('subtopic' => $subtopic));
         $this->drawPage();
     }
