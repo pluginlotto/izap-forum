@@ -58,6 +58,7 @@ add_translation('en', array(
     'izap_forum:index_add_discussion' => 'Add subtopic',
     'izap_forum:index_topic_sub' => ' - Discussions',
     'izap_forum:index_no_topic_available' =>'No subtopic available for this topic',
+    'izap_forum_:index_no_main_topic' => 'No main topic yet has been created.<br/> Click on Add new to add new discussion',
     
     //list topics language
 //    'izap_forum:list_add' => 'Add new',

@@ -142,22 +142,27 @@ width: 13%;
 text-align: right;
 }
 
-.selected {
-font-weight: bold;.
+.category_table tr.selected {
 color: #FFF;
 background-color: #000;
 padding-left: 10px;
 }
 
-.selected a{
+.category_table tr.selected:hover {
+font-weight: bold;
 color: #FFF;
+background-color: #000;
+padding-left: 10px;
+}
+
+.category_table tr.selected a{
+color: #FFF;
+font-weight: bold !important;
 }
 
 .annotation_sidebar {
 width: 150px;
 float:left;
-
-
 }
 
 .annotation_icon {
@@ -227,5 +232,15 @@ font-family: 'Honey', serif;
 font-size:12px;
 }
 
+.izap-forum-icon-main {
+padding:0px;
+margin:2px;
+min-width: 25px;
+min-height: 25px;
+}
 
+.izap-forum-title {
+width:100%;
+
+}
 

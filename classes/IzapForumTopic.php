@@ -67,7 +67,7 @@ class IzapForumTopic extends IzapObject {
       izap_decrease_total_topics_byizap($category);
     }
 
-    parent::delete();
+    return delete_entity($this->guid);
   }
 
   public function getURL() {

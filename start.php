@@ -40,20 +40,6 @@ function izap_forum_init() {
 /**
  * this will run on activation of plugin and push the class name with the subtype
  */
-function izap_update_forum_subtype() {
-  if(get_subtype_id('object', GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE)) {
-    update_subtype('object', GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE, GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE);
-  } else {
-    add_subtype('object', GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE, GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE);
-  }
-
-  if(get_subtype_id('object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE)) {
-    update_subtype('object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE);
-  } else {
-    add_subtype('object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE);
-  }
-
-}
 function izap_forum_post_hook($event, $object_type, $object) {
   $entity = get_entity($object->entity_guid);
   if($entity instanceof IzapForumTopic) {

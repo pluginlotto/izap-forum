@@ -21,38 +21,44 @@ if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
   </a>
   <div class="title">
 
-    <a href="<?php echo $topic->getURL(); ?>" title ="<?php echo $topic->title?>">
-      <b><?php echo ucfirst($topic->getTitle(array('mini' => true,'max_length' => 50))); ?></b>
+    <a href="<?php echo $topic->getURL(); ?>" title ="<?php echo $topic->title ?>">
+      <b><?php echo ucfirst($topic->getTitle(array('mini' => true, 'max_length' => 50))); ?></b>
     </a>
     <div class="izap-forum-desc">
       <?php
-        echo $topic->getDescription(array('mini' => TRUE, 'max_length' => 75));
+      echo $topic->getDescription(array('mini' => TRUE, 'max_length' => 75));
       ?>
     </div>
-  <?php if($topic->canedit(elgg_get_logged_in_user_guid())){?>
-      <a href ="<?php
+    <?php if ($topic->canedit(elgg_get_logged_in_user_guid())) {
+ ?>
+        <a href ="<?php
         echo IzapBase::setHref(array(
             'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
             'action' => 'add_topic',
             'vars' => array($topic->guid),
             'page_owner' => false
         ))
-      ?>">
-        <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/edit.png' ?>" />
-      </a>
-    <a href="<?php echo IzapBase::deleteLink(array(
-          'guid' => $topic->guid,
-          'rurl' => true,
-          'only_url' =>true
-
-          ));
-      ?>">
-        <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/delete.png' ?>" />
-      </a>
-    <?php }?>
+    ?>">
+       <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/edit.png' ?>" />
+     </a>
+    <?php
+        $link_img = '<img src="' . $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/delete.png" />';
+        echo elgg_view('output/confirmlink', array(
+            'href' => IzapBase::deleteLink(array(
+                'guid' => $topic->guid,
+                'rurl' => IzapBase::setHref(array(
+                    'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+                    'action' => 'index'
+                )),
+                'only_url' => true
+            )),
+            'text' => $link_img
+        ));
+      }
+    ?>
     </div>
 
-  <div class="stats">
+    <div class="stats">
     <?php
       if ($topic->isMainTopic()) {
         echo (int) $topic->total_topics;

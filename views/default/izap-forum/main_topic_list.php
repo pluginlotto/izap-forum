@@ -14,7 +14,7 @@
 
 $topics = elgg_extract('topics', $vars);
 ?>
-<table class="category_table">
+<table class="category_table" cellpadding="0" cellspacing="0">
   <caption class="category_caption">
     <?php echo elgg_echo('izap_forum:topic_forum'); ?>
     <a href="<?php
@@ -26,54 +26,71 @@ $topics = elgg_extract('topics', $vars);
 
   </caption>
   <tr>
-    <th>
+    <th colspan="4">
       <?php echo elgg_echo('izap-forum:topic_title'); ?>
     </th>
-    <th></th>
-    <th></th>
+
   </tr>
   <?php
-      foreach ($topics as $topic):
+      if ($topics):
+        foreach ($topics as $topic):
   ?>
-        <tr class="decorate">
-          <td <?php echo ((int) $vars['current_topic']->guid == $topic->guid) ? 'class="selected"' : '' ?>>
+  <tr class="decorate <?php echo ((int) $vars['current_topic']->guid == $topic->guid) ? 'selected' : '' ?>" style="padding: 0px; margin: 0px;">
+    <td class="izap-forum-icon-main">
+      <?php echo elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/icon', array('entity' => $topic, 'size' => 'tiny')); ?>
+        </td >
+        <td>
       <?php
-        echo $topic->getLink(array(
-            'text' => $topic->getTitle(array(
-                'mini' =>true,
-                'max_length' =>40)) . ' - ' . (int) $topic->total_topics,
-            'title' => $topic->title
-                ));
-        if($topic->canEdit(elgg_get_logged_in_user_guid())){
+          echo $topic->getLink(array(
+              'text' => $topic->getTitle(array(
+                  'mini' => true,
+                  'max_length' => 40)) . ' - ' . (int) $topic->total_topics,
+              'title' => $topic->title
+          ));
+          if ($topic->canEdit(elgg_get_logged_in_user_guid())) {
       ?></td>
           <td>
-        <a href ="<?php
-        echo IzapBase::setHref(array(
-            'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-            'action' => 'add_topic',
-            'vars' => array($topic->guid),
-            'page_owner' => false
-        ))
+            <a href ="<?php
+            echo IzapBase::setHref(array(
+                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+                'action' => 'add_topic',
+                'vars' => array($topic->guid),
+                'page_owner' => false
+            ))
       ?>">
-        <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/edit.png' ?>" />
-
-      </a>
-    </td>
-    <td><?php
-        if($topic->total_topics<=0 ){?>
-      <a href="<?php echo IzapBase::deleteLink(array(
-          'guid' => $topic->guid,
-          'rurl' => true,
-          'only_url' =>true
-
-          ));
-      ?>">
-        <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/delete.png' ?>" />
-      </a><?php }}?>
-    </td>
-  </tr>
+           <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/edit.png' ?>" />
+         </a>
+       </td>
+       <td><?php
+            if ($topic->total_topics <= 0) {
+              $link_img = '<img src="' . $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/delete.png" />';
+              echo elgg_view('output/confirmlink', array(
+                  'href' => IzapBase::deleteLink(array(
+                      'guid' => $topic->guid,
+                      'rurl' => IzapBase::setHref(array(
+                          'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+                          'action' => 'index'
+                      )),
+                      'only_url' => true
+                  )),
+                  'text' => $link_img
+              ));
+            }
+          }
+      ?>
+        </td>
+      </tr>
 
   <?php
-         endforeach;
+          endforeach;
+        else:
+  ?>
+          <tr>
+            <td>
+      <?php echo elgg_echo('izap_forum_:index_no_main_topic'); ?>
+        </td>
+      </tr>
+  <?php
+          endif;
   ?>
 </table>
