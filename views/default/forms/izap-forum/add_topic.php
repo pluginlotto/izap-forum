@@ -33,30 +33,13 @@ $body .= elgg_view('input/checkboxes', array(
             )
         )) . '<br />';
 
-$body .=IzapBase::input('file',array(
-    'input_title' =>elgg_echo('izap-forum:add_topic:icon'),
-    'internalname' => 'icon',
-));
+
 
 $body .= IzapBase::input('longtext', array(
             'input_title' => elgg_echo('izap-forum:add_topic:description'),
             'internalname' => 'attributes[description]',
             'value' => $main_topic->description
         ));
-
-//if (elgg_instanceof($category, 'object', 'IzapForumCategories')) {
-//    $body .= elgg_view('input/hidden', array(
-//                'internalname' => 'attributes[_category_guid]',
-//                'value' => $category->guid
-//            ));
-//} else {
-//    $body .= IzapBase::input('pulldown', array(
-//                'input_title' => elgg_echo('izap-forum:add_topic:category'),
-//                'internalname' => 'attributes[_category_guid]',
-//                'options_values' => izap_get_forum_categories(),
-//                'value' => $main_topic->category_guid,
-//            ));
-//}
 
 $body .= IzapBase::input('text', array(
             'input_title' => elgg_echo('izap-forum:add_topic:tag'),
