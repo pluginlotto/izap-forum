@@ -38,40 +38,12 @@ if ($izap_topic->save()) {
      $izap_topic->updation_time = time();
      if (!$posted_array['guid']) {
       izap_update_total_topics_byizap(get_entity($izap_topic->parent_guid));
+      $izap_topic->annotate('forum_post', $izap_topic->description, $izap_topic->access_id);
      }
   }else{
      $izap_topic->forum_main_topics = 'yes';
      $izap_topic->updation_time = time();
   }
-
-//  echo (int)$izap_topic->category_guid;
-//  echo $izap_topic->parent_guid;
-//  exit;
-//  
-//  if ($izap_topic->parent_guid == $izap_topic->category_guid || ((int) $izap_topic->parent_guid == 0 && (int) $izap_topic->category_guid > 0)) {
-//    $izap_topic->forum_main_topics = 'yes';
-//    $izap_topic->updation_time = time();
-//    if (!$izap_topic->parent_guid) {
-//      $izap_topic->parent_guid = $izap_topic->category_guid;
-//    }
-//    if (!$posted_array['guid']) {
-//      izap_update_total_topics_byizap(get_entity($izap_topic->category_guid));
-//    }
-//  }
-//
-//  if ($izap_topic->parent_guid > 0 && $izap_topic->parent_guid != $izap_topic->category_guid) {
-////    echo 'child';
-////    exit;
-//    $parent = new IzapForumTopic($izap_topic->parent_guid);
-//    IzapBase::updateMetadata(array('entity' => $parent, 'metadata' => array('updation_time' => time())));
-//    //  $izap_topic->category_guid = $parent->category_guid;
-//    $izap_topic->forum_main_topics = 'no';
-//    $izap_topic->updation_time = time();
-//    if (!$posted_array['guid']) {
-//      $izap_topic->annotate('forum_post', $izap_topic->description, $izap_topic->access_id);
-//      izap_update_total_topics_byizap($parent);
-//    }
-//  }
 
   elgg_clear_sticky_form(GLOBAL_IZAP_FORUM_PLUGIN);
 
@@ -82,50 +54,6 @@ if ($izap_topic->save()) {
                 'owner_guid' => $izap_topic->owner_guid,
                 'create_thumbs' => TRUE
             ));
-//    $image = new ElggFile();
-//
-//    $image->owner_guid = $izap_topic->owner_guid;
-//    $image->setFilename($image_name. '.jpg');
-//
-//    $image->open("write");
-//    $image->write();
-//    $image->close();
-//
-//    $thumbtiny = get_resized_image_from_existing_file($image->getFilenameOnFilestore(), 25, 25, true);
-//    $thumbsmall = get_resized_image_from_existing_file($image->getFilenameOnFilestore(), 40, 40, true);
-//    $thumbmedium = get_resized_image_from_existing_file($image->getFilenameOnFilestore(), 100, 100, true);
-//    $thumblarge = get_resized_image_from_existing_file($image->getFilenameOnFilestore(), 200, 200, false);
-//    if ($thumbtiny) {
-//
-//      $thumb = new ElggFile();
-//      $thumb->owner_guid = $izap_topic->owner_guid;
-//      $thumb->setMimeType('image/jpeg');
-//
-//      $thumb->setFilename($image_name . "tiny.jpg");
-//      $thumb->open("write");
-//      $thumb->write($thumbtiny);
-//      //echo $thumb->getFilenameOnFilestore();exit;
-//      $thumb->close();
-//
-//      $thumb->setFilename($image_name . "small.jpg");
-//      $thumb->open("write");
-//      $thumb->write($thumbsmall);
-//      $thumb->close();
-//
-//      $thumb->setFilename($image_name . "medium.jpg");
-//      $thumb->open("write");
-//      $thumb->write($thumbmedium);
-////      echo $thumb->getFilenameOnFilestore();
-////    exit;
-//      $thumb->close();
-//
-//      $thumb->setFilename($image_name . "large.jpg");
-//      $thumb->open("write");
-//      $thumb->write($thumblarge);
-//      $thumb->close();
-//    }
-
-
   }
   
 

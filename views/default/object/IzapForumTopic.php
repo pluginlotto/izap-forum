@@ -21,14 +21,35 @@ if (elgg_instanceof($topic, 'object', 'IzapForumTopic', 'IzapForumTopic')) {
   </a>
   <div class="title">
 
-    <a href="<?php echo $topic->getURL(); ?>">
-      <b><?php echo ucfirst($topic->title); ?></b>
+    <a href="<?php echo $topic->getURL(); ?>" title ="<?php echo $topic->title?>">
+      <b><?php echo ucfirst($topic->getTitle(array('mini' => true,'max_length' => 50))); ?></b>
     </a>
     <div class="izap-forum-desc">
-      <?php $max_len = 200;
-      echo substr(filter_var($topic->description, FILTER_SANITIZE_STRING), 0, $max_len) . ((strlen($topic->description) > $max_len) ? ' ...' : ''); ?>
+      <?php
+        echo $topic->getDescription(array('mini' => TRUE, 'max_length' => 75));
+      ?>
     </div>
-  </div>
+  
+      <a href ="<?php
+        echo IzapBase::setHref(array(
+            'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+            'action' => 'add_topic',
+            'vars' => array($topic->guid),
+            'page_owner' => false
+        ))
+      ?>">
+        <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/edit.png' ?>" />
+      </a>
+    <a href="<?php echo IzapBase::deleteLink(array(
+          'guid' => $topic->guid,
+          'rurl' => true,
+          'only_url' =>true
+
+          ));
+      ?>">
+        <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/delete.png' ?>" />
+      </a>
+    </div>
 
   <div class="stats">
     <?php

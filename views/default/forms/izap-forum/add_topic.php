@@ -19,7 +19,8 @@ $parent = $vars['parent'];
 //    $category = $vars['category'];
 //}
 
-$body = IzapBase::input('text', array(
+$body = '<div class ="form_layout">';
+$body .= IzapBase::input('text', array(
             'input_title' => elgg_echo('izap-forum:add_topic:title'),
             'internalname' => 'attributes[_title]',
             'value' => $main_topic->title
@@ -74,6 +75,7 @@ $body .= elgg_view('input/hidden', array(
             'value' => GLOBAL_IZAP_FORUM_PLUGIN
         ));
 
+$body .= '</div>';
 if (isset($parent)) {
     $body .= elgg_view('input/hidden', array(
                 'internalname' => 'attributes[parent_guid]',
@@ -87,7 +89,7 @@ $body .= elgg_view('input/hidden', array(
             'value' => $main_topic->guid
         ));
 
-echo IzapBase::input('form', array(
+echo elgg_view('input/form', array(
     'body' => $body,
     'action' => IzapBase::getFormAction('add_edit', GLOBAL_IZAP_FORUM_PLUGIN),
     'enctype' =>'multipart/form-data'

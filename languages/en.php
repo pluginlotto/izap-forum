@@ -33,7 +33,7 @@ add_translation('en', array(
 //    'izap-forum:delete' => 'Delete',
 //    'izap-forum:breadcrumb_index' => 'Index',
 //    'izap-forum:breadcrumb_addtopic' => 'Add topic',
-//    'izap-forum:post_successfull' => 'Post successfully posted',
+//   
 //    'izap-forum:breadcrumb_add' => 'Add category',
 //    'sorted_by_recent_post' => 'Sorted by recent post',
 
@@ -46,28 +46,29 @@ add_translation('en', array(
     
     //index page language
     'izap-forum:controller:index' => 'Index',
-    'izap_forum:index_no_topic_available' => 'No topic available for this category',
-    'izap_forum:category_forum' => 'Forum',
-    'izap_forum:add_new_Cat' => 'Add new',
-    'izap-forum:categories_title' => 'Categories',
+    'izap_forum:topic_forum' => 'Forum',
+    'izap_forum:add_new_topic' => 'Add new',
     'izap_forum:index_add_topic' => 'Add new topic',
-    'izap_forum:index_all_topics' => 'All topics',
+    'izap_forum:index_all_topics' => 'All Discussions',
     'izap_forum:index_title' => 'Title',
-    'izap_forum:index_topics' => 'Topics',
+    'izap_forum:index_views' => 'views',
     'izap_forum:index_posts' => 'Posts',
     'izap_forum:index_last_post' => 'Last post by',
-    'izap_forum:index_cat_topic' =>' - topics',
+    'izap-forum:topic_title' => 'Topics',
+    'izap_forum:index_add_discussion' => 'Add subtopic',
+    'izap_forum:index_topic_sub' => ' - Discussions',
+    'izap_forum:index_no_topic_available' =>'No subtopic available for this topic',
     
     //list topics language
-    'izap_forum:list_add' => 'Add new',
-    'izap-forum:list_topics' => 'Topics',
-    'izap_forum:list_add_subtopic' => 'Add discussion',
-    'izap_forum_list_title' => 'Title',
-    'izap_forum_list_replies' => 'Replies',
-    'izap_forum_list_views' => 'Views',
-    'izap_forum_list_last_post' => 'Last post by',
-    'izap_forum:list_no_subtopic_available' => 'No subtopic available for this topic',
-    
+//    'izap_forum:list_add' => 'Add new',
+//    'izap-forum:list_topics' => 'Topics',
+//    'izap_forum:list_add_subtopic' => 'Add discussion',
+//    'izap_forum_list_title' => 'Title',
+//    'izap_forum_list_replies' => 'Replies',
+//    'izap_forum_list_views' => 'Views',
+//    'izap_forum_list_last_post' => 'Last post by',
+//    'izap_forum:list_no_subtopic_available' => 'No subtopic available for this topic',
+//    
     //Add topic form language
 
      'izap-forum:add_topic_form_field_missing' => 'Required fields are missing',
@@ -79,5 +80,18 @@ add_translation('en', array(
     'izap-forum:add_topic:category' => 'Categories',
     'izap-forum:add_topic:tag' => 'Tags',
     'izap-forum:add_topic:access' => 'Access',
+    'izap-forum:add_topic' => 'Add new',
+
+
+    //discussion sidebar language
+    'izap_forum:discussion_info' => 'Info',
+
+    //breadcrumb language
+
+    'izap-forum:breadcrumb_addtopic' => 'Add new',
+    'izap-forum:breadcrumb_index' => 'Index',
+
+
+     'izap-forum:post_successfull' => 'Post successfully posted',
 
 ));

@@ -11,48 +11,57 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
-$parent = elgg_Extract('topic',$vars);
+$parent = elgg_Extract('topic', $vars);
 ?>
-<table class="category_table"><caption class="category_caption"><?php if($parent){
-  echo $parent->title;
-  echo elgg_Echo('izap_forum:index_cat_topic');
-}
-else 
-echo elgg_echo('izap_forum:index_all_topics'); ?>
-    <a href="<?php echo IzapBase::setHref(array(
-     'context'=>GLOBAL_IZAP_FORUM_PAGEHANDLER,
-        'action' =>'add_sub_topic',
-        'vars' => array(($parent)?$parent->guid:'')
-    ))?>">
-      <?php echo elgg_echo('izap_forum:index_add_discussion')?>
+<table class="category_table"><caption class="category_caption"><?php if ($parent) {
+?>
+    <span title="<?php echo $parent->title ?>">
+      <?php
+      echo $parent->getTitle(array('mini' => TRUE, 'max_length' => 25));
+      echo elgg_Echo('izap_forum:index_topic_sub');
+      ?>
+    </span>
+    <a href="<?php
+      echo IzapBase::setHref(array(
+          'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+          'action' => 'add_sub_topic',
+          'vars' => array(($parent) ? $parent->guid : '')
+      )) ?>">
+<?php echo elgg_echo('izap_forum:index_add_discussion') ?>
     </a>
+    <?php
+    }
+    else
+      echo elgg_echo('izap_forum:index_all_topics');
+    ?>
+
   </caption>
   <tr class ="header_background">
     <th>
-<?php
-$header_array = array(
-    array(
-        'title' => elgg_echo('izap_forum:index_title')
-    ),
-    array(
-        'title' => elgg_echo('izap_forum:index_topics')
-    ),
-    array(
-        'title' => elgg_echo('izap_forum:index_posts')
-    ),
-    array(
-        'title' => elgg_echo('izap_forum:index_last_post')
-    ),
-);
-echo elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/header', array('header_elements' => $header_array));
-?>
+      <?php
+      $header_array = array(
+          array(
+              'title' => elgg_echo('izap_forum:index_title')
+          ),
+          array(
+              'title' => elgg_echo('izap_forum:index_posts')
+          ),
+          array(
+              'title' => elgg_echo('izap_forum:index_views')
+          ),
+          array(
+              'title' => elgg_echo('izap_forum:index_last_post')
+          ),
+      );
+      echo elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/header', array('header_elements' => $header_array));
+      ?>
     </th>
   </tr>
   <tr>
     <td>
-<?php
-echo $vars['subtopics'];
-?>
+      <?php
+      echo $vars['subtopics'];
+      ?>
     </td>
   </tr>
 </table>

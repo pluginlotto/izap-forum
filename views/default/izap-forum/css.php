@@ -93,6 +93,15 @@ padding:5px;
 text-align:center;
 }
 
+
+.form_layout {
+border:1px solid #B1B1B1;
+padding:10px;
+-moz-border-radius: 10px;
+background-color:#EEEEEE;
+
+}
+
 .category_table tr.decorate {
 border: dotted 1px #DEDEDE;
 background-color:#F5F5F5;

@@ -13,24 +13,24 @@
  */
 
 function izap_create_submenus(){
-    $item_add_category=new ElggMenuItem('add_category', elgg_Echo('izap-forum:add_category'), IzapBase::setHref(array(
-        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-        'action' => 'add_category'
-    )));
-    if(elgg_is_admin_logged_in ()){
-    elgg_register_menu_item('page', $item_add_category);
-    }
-    $item_list_category=new ElggMenuItem('list_category', elgg_Echo('izap-forum:list_category'), IzapBase::setHref(array(
-        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-        'action' => 'list_category'
-    )));
-    elgg_register_menu_item('page', $item_list_category);
-
-    $item_index=new ElggMenuItem('index', elgg_Echo('izap-forum:index'), IzapBase::setHref(array(
-        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-        'action' => 'index'
-    )));
-    elgg_register_menu_item('page', $item_index);
+//    $item_add_category=new ElggMenuItem('add_category', elgg_Echo('izap-forum:add_category'), IzapBase::setHref(array(
+//        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+//        'action' => 'add_category'
+//    )));
+//    if(elgg_is_admin_logged_in ()){
+//    elgg_register_menu_item('page', $item_add_category);
+//    }
+//    $item_list_category=new ElggMenuItem('list_category', elgg_Echo('izap-forum:list_category'), IzapBase::setHref(array(
+//        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+//        'action' => 'list_category'
+//    )));
+//    elgg_register_menu_item('page', $item_list_category);
+//
+//    $item_index=new ElggMenuItem('index', elgg_Echo('izap-forum:index'), IzapBase::setHref(array(
+//        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+//        'action' => 'index'
+//    )));
+//    elgg_register_menu_item('page', $item_index);
 
 
 }

@@ -24,7 +24,7 @@ class IzapForumController extends IzapController {
                 'plugin' => GLOBAL_IZAP_FORUM_PLUGIN,
                 'lib' => 'izap-forum'
             ));
-    izap_create_submenus();
+    //izap_create_submenus();
     elgg_push_breadcrumb(elgg_Echo('izap-forum:breadcrumb_index'), IzapBase::setHref(array(
                 'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
                 'action' => 'index'
@@ -32,7 +32,6 @@ class IzapForumController extends IzapController {
   }
 
   public function actionIndex() {
-   
     $query = array(
         'type' => 'object',
         'subtype' => GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE,
@@ -51,7 +50,7 @@ class IzapForumController extends IzapController {
     $options = array(
         'type' => 'object',
         'subtype' => GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE,
-        'limit' => 15,
+        'limit' => 25,
         'metadata_name' => 'forum_main_topics',
         'metadata_values' => 'no',
         'order_by_metadata' => array(
@@ -66,6 +65,7 @@ class IzapForumController extends IzapController {
     if (elgg_instanceof($parent, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE)) {
       $topic_selected = $parent;
       $options['metadata_name_value_pairs'][] = array('name' => 'parent_guid', 'value' => $topic_selected->guid);
+      elgg_push_breadcrumb($topic_selected->title);
     }
 
     $this->page_elements['title'] = elgg_echo('izap-forum:controller:index');
@@ -73,7 +73,7 @@ class IzapForumController extends IzapController {
 
     $this->addWidget(GLOBAL_IZAP_FORUM_PLUGIN . '/main_topic_list', array('topics' => $topics, 'current_topic' => $topic_selected));
     $subtopics = elgg_list_entities_from_metadata($options);
-    $this->page_elements['content'] = elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/index', array('subtopics' => $subtopics?$subtopics:elgg_echo('izap_forum:index_no_topic_available'), 'topic' => $parent));
+    $this->page_elements['content'] = elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/index', array('subtopics' => $subtopics ? $subtopics : elgg_echo('izap_forum:index_no_topic_available'), 'topic' => $parent));
     $this->drawPage();
   }
 
@@ -115,7 +115,7 @@ class IzapForumController extends IzapController {
     ));
 
     $sub_topics = elgg_list_entities_from_metadata($options);
-    $this->page_elements['content'] = elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/list_sub_topics', array('subtopics' => $sub_topics?$sub_topics:elgg_echo('izap_forum:list_no_subtopic_available'), 'parent' => $parent));
+    $this->page_elements['content'] = elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/list_sub_topics', array('subtopics' => $sub_topics ? $sub_topics : elgg_echo('izap_forum:list_no_subtopic_available'), 'parent' => $parent));
     $this->drawPage();
   }
 
@@ -131,20 +131,21 @@ class IzapForumController extends IzapController {
   }
 
   public function actionAdd_topic() {
+    $this->page_layout = 'content';
     //$category = get_entity($this->url_vars[1]);
     $topic = get_entity($this->url_vars[1]);
-    elgg_push_breadcrumb($category->title, IzapBase::setHref(array(
-                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                'action' => 'list_topics',
-                'vars' => array($category->guid)
-            )));
+//    elgg_push_breadcrumb($category->title, IzapBase::setHref(array(
+//                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+//                'action' => 'list_topics',
+//                'vars' => array($category->guid)
+//            )));
     if ($topic) {
       elgg_push_breadcrumb($topic->title, IzapBase::setHref(array(
                   'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                  'action' => 'list_sub_topics',
+                  'action' => 'index',
                   'vars' => array($topic->guid, $topic->title)
               )));
-    }
+    }else
     elgg_push_breadcrumb(elgg_echo('izap-forum:breadcrumb_addtopic'));
 
     $this->page_elements['title'] = elgg_echo('izap-forum:add_topic');
@@ -154,12 +155,12 @@ class IzapForumController extends IzapController {
   public function actionList_sub_topics() {
     $topic = get_entity($this->url_vars[2]);
 
-    $item_add_topic = new ElggMenuItem('add_topic', elgg_Echo('izap-forum:add_sub_topic'), IzapBase::setHref(array(
-                        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                        'action' => 'add_topic',
-                        'vars' => array($topic->category_guid, $topic->guid),
-                    )));
-    elgg_register_menu_item('page', $item_add_topic);
+//    $item_add_topic = new ElggMenuItem('add_topic', elgg_Echo('izap-forum:add_sub_topic'), IzapBase::setHref(array(
+//                        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+//                        'action' => 'add_topic',
+//                        'vars' => array($topic->category_guid, $topic->guid),
+//                    )));
+//    elgg_register_menu_item('page', $item_add_topic);
 
     $category = get_entity($topic->category_guid);
     elgg_push_breadcrumb($category->title, IzapBase::setHref(array(
@@ -210,29 +211,35 @@ class IzapForumController extends IzapController {
     if (!elgg_instanceof($subtopic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE)) {
       forward();
     }
-    $this->addWidget(GLOBAL_IZAP_FORUM_PLUGIN.'/discussion_info', array('subtopic' => $subtopic));
+    $this->addWidget(GLOBAL_IZAP_FORUM_PLUGIN . '/discussion_info', array('subtopic' => $subtopic));
     $this->page_elements['title'] = $subtopic->title;
-
-
-    $category = get_entity($subtopic->category_guid);
-    elgg_push_breadcrumb($category->title, IzapBase::setHref(array(
-                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                'action' => 'list_topics',
-                'vars' => array($category->guid)
-            )));
     $topic = get_entity($subtopic->parent_guid);
-    elgg_push_breadcrumb($topic->title, IzapBase::setHref(array(
-                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                'action' => 'list_sub_topics',
-                'vars' => array($topic->guid, $topic->title)
-            )));
-
-
-    elgg_push_breadcrumb($subtopic->title, IzapBase::setHref(array(
-                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                'action' => 'discussion',
-                'vars' => array($subtopic->guid, $subtopic->title)
-            )));
+    elgg_push_breadcrumb($topic->title,  IzapBase::setHref(array(
+        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+        'action' =>'index',
+        'vars' => array($topic->guid, elgg_get_friendly_title($topic->title)),
+        'page_owner' => false
+    )));
+elgg_push_breadcrumb(elgg_get_friendly_title($subtopic->title));
+//    $category = get_entity($subtopic->category_guid);
+//    elgg_push_breadcrumb($category->title, IzapBase::setHref(array(
+//                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+//                'action' => 'list_topics',
+//                'vars' => array($category->guid)
+//            )));
+//
+//    elgg_push_breadcrumb($topic->title, IzapBase::setHref(array(
+//                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+//                'action' => 'list_sub_topics',
+//                'vars' => array($topic->guid, $topic->title)
+//            )));
+//
+//
+//    elgg_push_breadcrumb($subtopic->title, IzapBase::setHref(array(
+//                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+//                'action' => 'discussion',
+//                'vars' => array($subtopic->guid, $subtopic->title)
+//            )));
     IzapBase::increaseViews($subtopic);
     $this->page_elements['content'] = '<p align="right">' . IzapBase::deleteLink(array('guid' => $this->url_vars[2], 'rurl' => IzapBase::setHref(array(
                     'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
@@ -257,29 +264,25 @@ class IzapForumController extends IzapController {
   }
 
   public function actionAdd_sub_topic() {
+    $this->page_layout = 'content';
     //$category = get_entity($this->url_vars[1]);
     $topic = get_entity($this->url_vars[1]);
     $sub_topic = get_entity($this->url_vars[2]);
 
 
-    elgg_push_breadcrumb($category->title, IzapBase::setHref(array(
-                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                'action' => 'list_topics',
-                'vars' => array($category->guid)
-            )));
-
+    
     if ($topic) {
 
       elgg_push_breadcrumb($topic->title, IzapBase::setHref(array(
                   'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                  'action' => 'list_sub_topics',
+                  'action' => 'index',
                   'vars' => array($topic->guid, $topic->title)
               )));
     }
     elgg_push_breadcrumb(elgg_echo('izap-forum:breadcrumb_addtopic'));
 
     $this->page_elements['title'] = elgg_echo('izap-forum:add_topic');
-    $this->render('forms/' . GLOBAL_IZAP_FORUM_PLUGIN . '/add_topic', array('entity' => $sub_topic, 'parent' => $topic, 'category' => $category));
+    $this->render('forms/' . GLOBAL_IZAP_FORUM_PLUGIN . '/add_topic', array('entity' => $sub_topic, 'parent' => $topic));
   }
 
   public function actionIcon() {
