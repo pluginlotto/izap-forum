@@ -20,7 +20,7 @@ $user = get_entity($annotation->owner_guid);
   <div class="annotation_sidebar">
     <div class="annotation_icon">
       <a href="<?php echo $user->getURL(); ?>">
-        <img src="<?php echo $user->getIconURL('large'); ?>" alt="<?php echo $user->name ?>" />
+        <img src="<?php echo $user->getIconURL('large'); ?>" alt="<?php echo $user->name ?>" height="140" width="138"/>
       </a>
       <span class="username">
         <a href="<?php echo $user->getURL(); ?>"><?php echo $user->name?></a>
