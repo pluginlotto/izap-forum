@@ -16,13 +16,12 @@ $topics = elgg_extract('topics', $vars);
 ?>
 <table class="category_table" cellpadding="0" cellspacing="0">
   <caption class="category_caption">
-    <?php echo elgg_echo('izap_forum:topic_forum'); ?>
-    <a href="<?php
-    echo IzapBase::setHref(array(
-        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-        'action' => 'add_topic',
-    )); ?>" class="elgg-button elgg-button-action">
-      <?php echo elgg_echo('izap_forum:add_new_topic') ?></a>
+<!--        <a href="<?php
+//    echo IzapBase::setHref(array(
+//        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+//        'action' => 'add_topic',
+//    )); ?>" class="elgg-button elgg-button-action">
+      <?php //echo elgg_echo('izap_forum:add_new_topic') ?></a>-->
 
   </caption>
   <tr>

@@ -13,29 +13,14 @@
  */
 $parent = elgg_Extract('topic', $vars);
 ?>
-<table class="category_table"><caption class="category_caption"><?php if ($parent) {
-?>
-    <span title="<?php echo $parent->title ?>">
-      <?php
-      echo $parent->getTitle(array('mini' => TRUE, 'max_length' => 25));
-      echo elgg_Echo('izap_forum:index_topic_sub');
-      ?>
-    </span>
-    <a href="<?php
-      echo IzapBase::setHref(array(
-          'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-          'action' => 'add_sub_topic',
-          'vars' => array(($parent) ? $parent->guid : '')
-                  )) ?>" class="elgg-button elgg-button-action">
-<?php echo elgg_echo('izap_forum:index_add_discussion') ?>
-    </a>
-    <?php
+<table class="category_table"><?php if ($parent) {
+
     }
     else
       echo elgg_echo('izap_forum:index_all_topics');
     ?>
 
-  </caption>
+ 
   <tr class ="header_background">
     <th>
       <?php

@@ -24,11 +24,6 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
     <a href="<?php echo $topic->getURL(); ?>" title ="<?php echo $topic->title ?>">
       <b><?php echo ucfirst($topic->getTitle(array('mini' => true, 'max_length' => 50))); ?></b>
     </a>
-    <div class="izap-forum-desc">
-      <?php
-      echo $topic->getDescription(array('mini' => TRUE, 'max_length' => 75));
-      ?>
-    </div>
     <?php if ($topic->canedit(elgg_get_logged_in_user_guid())) {
  ?>
         <a href ="<?php
@@ -56,6 +51,12 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
         ));
       }
     ?>
+    <div class="izap-forum-desc">
+      <?php
+      echo $topic->getDescription(array('mini' => TRUE, 'max_length' => 75));
+      ?>
+    </div>
+    
     </div>
 
     <div class="stats">

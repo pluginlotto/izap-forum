@@ -47,7 +47,7 @@ add_translation('en', array(
     //index page language
     'izap-forum:controller:index' => 'Index',
     'izap_forum:topic_forum' => 'Forum',
-    'izap_forum:add_new_topic' => 'Add new',
+    'izap_forum:add_new_topic' => 'Add topic',
     'izap_forum:index_add_topic' => 'Add new topic',
     'izap_forum:index_all_topics' => 'All Discussions',
     'izap_forum:index_title' => 'Title',
@@ -62,7 +62,7 @@ add_translation('en', array(
     
     //list topics language
 //    'izap_forum:list_add' => 'Add new',
-//    'izap-forum:list_topics' => 'Topics',
+    'izap-forum:list_topics' => 'Topics',
 //    'izap_forum:list_add_subtopic' => 'Add discussion',
 //    'izap_forum_list_title' => 'Title',
 //    'izap_forum_list_replies' => 'Replies',
@@ -81,7 +81,7 @@ add_translation('en', array(
     'izap-forum:add_topic:category' => 'Categories',
     'izap-forum:add_topic:tag' => 'Tags',
     'izap-forum:add_topic:access' => 'Access',
-    'izap-forum:add_topic' => 'Add new',
+    'izap-forum:add_topic' => 'Add new topic',
 
 
     //discussion sidebar language

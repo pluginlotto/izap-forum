@@ -25,12 +25,12 @@ float:right;
 
 /* BEGIN: Css for izap-forum */
 
-.izap_forum_category_wrapper {
+<!--.izap_forum_category_wrapper {
 border: solid 2px #109DE4;
-margin: 10px;
+//margin: 10px;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
-}
+}-->
 
 .izap_forum_category_wrapper .list_title {
 background-color: #109DE4;
@@ -76,12 +76,9 @@ float: left;
 }
 
 .category_caption {
-margin-bottom:10px;
-padding-top:30px;
 font-weight:normal;
 font-family:Times new roman;
 font-size:20px;
-min-height: 30px;
 }
 
 .category_caption a {
@@ -122,7 +119,7 @@ background: #DFE7F4;
 
 .category_table {
 border-top: 1px solid #ccc;
-width:98%;
+width:100%;
 }
 
 .izap-forum-icon{
@@ -187,8 +184,7 @@ decoration: none;
 }
 
 .discussions {
-margin:15px;
-padding-top:30px;
+
 }
 
 .annotation_content {
@@ -202,7 +198,7 @@ padding-left:10px;
 }
 
 .discussions_list {
-padding:5px;
+
 }
 
 .annotation_wrapper {
@@ -211,16 +207,13 @@ padding:2px;
 }
 
 .discussion_info {
-margin-top:30px;
 width:100%;
 }
 
 .info_caption {
-margin-bottom:10px;
-padding:17px 0px 7px 0px;
+margin-bottom: 10px;
 font-weight:normal;
 font-size:20px;
-border-bottom: #DEDEDE 1px dotted;
 }
 
 .discussion_info tr {
@@ -240,3 +233,61 @@ width:100%;
 
 }
 
+/**********************NEW CSS FOR FORUM*******************************************/
+
+.main_topic_title {
+font-size:17px;
+font-weight:bolder;
+color:#0054A7;
+border-top: 1px solid #ccc;
+padding:4px;
+margin-bottom:2px;
+}
+
+.topic_list {
+background:#FFF;
+border-bottom:1px #CCC solid;
+}
+
+.selected {
+color: #000;
+background-color: #F3FAFA;
+}
+
+.topic_list:hover {
+background-color:#DFE7F4;
+color:#000;
+text-decoration:none;
+}
+.topic_img {
+float:left;
+width:24px;
+height:24px;
+overflow: hidden;
+}
+
+.topic_title {
+margin-left:2px;
+float:left;
+width:148px;
+height:24px;
+}
+
+.elgg-list {
+border:none;
+}
+.elgg-list > li
+{
+border:none;
+}
+
+.topic_title a{
+display:block;
+}
+
+.topic_edit_link{
+float:right;
+width:33px;
+height:24px;
+
+}

@@ -13,9 +13,9 @@
  */
 ?>
 <div class="discussions">
-  <div class="discussion_title">
-    <?php echo $vars['title']; ?>
-  </div>
+<!--  <div class="discussion_title">
+    
+  </div>-->
 
   <div class="discussions_list">
     <?php echo $vars['discussion_list']; ?>
