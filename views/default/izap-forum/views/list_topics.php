@@ -1,0 +1,83 @@
+<?php
+/**************************************************
+* iZAP Web Solutions                              *
+* Copyrights (c) 2005-2009. iZAP Web Solutions.   *
+* All rights reserved                             *
+***************************************************
+* @author iZAP Team "<support@izap.in>"
+* @link http://www.izap.in/
+* Under this agreement, No one has rights to sell this script further.
+* For more information. Contact "Tarun Kumar<tarun@izap.in>"
+ */
+
+$options = array(
+        'type' => 'object',
+        'subtype' => 'IzapForumTopics',
+);
+// if category is provided
+if($vars['category']) {
+  $options['metadata_name_value_pairs'][] = array('name' => 'category_guid', 'value' => $vars['category']->guid);
+}
+
+// if topic is also provied (parent)
+if($vars['topic']) {
+  $options['metadata_name_value_pairs'][] = array('name' => 'parent_guid', 'value' => $vars['topic']->guid);
+}else {
+  $options['metadata_name_value_pairs'][] = array('name' => 'parent_guid', 'value' => $vars['category']->guid);
+}
+$options['count'] = TRUE;
+$count = elgg_get_entities_from_metadata($options);
+
+if($count) {
+  unset($options['count']);
+  $entities = elgg_get_entities_from_metadata($options);
+  $list = elgg_view_entity_list($entities, $count, 0, 10, FALSE, FALSE, $vars['paging']);
+}
+
+if($vars['print_header']) {
+  ?>
+<div class="izap_froum_category_wrapper">
+  <div class="list_title" >
+    <div class="izap_forum_category_title">
+        <?php
+        if($vars['category'] && !$vars['topic']) {
+          echo forum_echo('forum');
+        }else{
+          echo $vars['topic']->title;
+        }
+        ?>
+    </div>
+
+    <div class="stats">
+        <?php
+        if($vars['category'] && !$vars['topic']) {
+          echo forum_echo('topics');
+        }else{
+          echo forum_echo('replies');
+        }
+        ?>
+    </div>
+
+    <div class="stats">
+        <?php
+        if($vars['category'] && !$vars['topic']) {
+          echo forum_echo('posts');
+        }else{
+          echo forum_echo('views');
+        }
+        ?>
+    </div>
+
+    <div class="stats">
+        <?php echo forum_echo('last_post')?>
+    </div>
+    <div class="clearfloat"></div>
+  </div>
+    <?php
+    echo $list;
+    ?>
+</div>
+  <?php
+}else {
+  echo $list;
+}
