@@ -26,6 +26,7 @@ add_translation('en', array(
     'izap_forum:topic_forum' => 'Forum',
     'izap_forum:add_new_topic' => 'Add topic',
     'izap_forum:index_add_topic' => 'Add new topic',
+        'izap_forum:index_edit_topic' => 'Edit topic',
     'izap_forum:index_all_topics' => 'All Discussions',
     'izap_forum:index_title' => 'Title',
     'izap_forum:index_views' => 'views',
@@ -49,7 +50,7 @@ add_translation('en', array(
     'izap-forum:add_topic:tag' => 'Tags',
     'izap-forum:add_topic:access' => 'Access',
     'izap-forum:add_topic' => 'Add new topic',
-
+    'izap-forum:edit_topic' => 'Edit topic',
 
     //discussion sidebar language
     'izap_forum:discussion_info' => 'Info',
