@@ -13,29 +13,6 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 add_translation('en', array(
-//   
-//    'izap-forum:add_category' => 'Add Category',
-//    
-//    
-//    'izap-forum:add_category:category_saved' => 'Category successfully saved',
-//    'izap-forum:list_category' => 'All categories',
-//    'izap-forum:add_topic' => 'Add topic',
-//    
-//    'izap-forum:add_topic:sticky' => 'Sticky topic',
-//    
-//    
-//    
-//    
-//    'izap-forum:add_topic:edit' => 'Edit',
-//    'izap-forum:index' => 'Index',
-//    
-//    'izap-forum:add_sub_topic' => 'Add sub topic',
-//    'izap-forum:delete' => 'Delete',
-//    'izap-forum:breadcrumb_index' => 'Index',
-//    'izap-forum:breadcrumb_addtopic' => 'Add topic',
-//   
-//    'izap-forum:breadcrumb_add' => 'Add category',
-//    'sorted_by_recent_post' => 'Sorted by recent post',
 
     /* New Language for the forum */
     'izap-forum:forum' => 'Forum',
@@ -59,17 +36,7 @@ add_translation('en', array(
     'izap_forum:index_topic_sub' => ' - Discussions',
     'izap_forum:index_no_topic_available' =>'No subtopic available for this topic',
     'izap_forum_:index_no_main_topic' => 'No main topic yet has been created.<br/> Click on Add new to add new discussion',
-    
-    //list topics language
-//    'izap_forum:list_add' => 'Add new',
     'izap-forum:list_topics' => 'Topics',
-//    'izap_forum:list_add_subtopic' => 'Add discussion',
-//    'izap_forum_list_title' => 'Title',
-//    'izap_forum_list_replies' => 'Replies',
-//    'izap_forum_list_views' => 'Views',
-//    'izap_forum_list_last_post' => 'Last post by',
-//    'izap_forum:list_no_subtopic_available' => 'No subtopic available for this topic',
-//    
     //Add topic form language
 
      'izap-forum:add_topic_form_field_missing' => 'Required fields are missing',
@@ -88,7 +55,7 @@ add_translation('en', array(
     'izap_forum:discussion_info' => 'Info',
     'izap_forum:discussion_posts' => 'Posts:',
     'izap_forum:discussion_views' => 'Views: ',
-    'izap_forum:discussion_created_on' => 'Discussion started on:',
+    'izap_forum:discussion_created_on' => 'Discussion started : ',
     'izap_forum:discussion_created_by' => 'Discussion started by:',
     'izap_forum:discussion_tags' => 'Tags',
 

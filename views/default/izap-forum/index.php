@@ -16,8 +16,7 @@ $parent = elgg_Extract('topic', $vars);
 <table class="category_table"><?php if ($parent) {
 
     }
-    else
-      echo elgg_echo('izap_forum:index_all_topics');
+    
     ?>
 
  
