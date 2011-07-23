@@ -35,9 +35,7 @@ function izap_forum_init() {
   elgg_register_menu_item('site', $menu_item);
   elgg_register_event_handler('create', 'annotation', 'izap_forum_post_hook');
   elgg_register_event_handler('delete', 'annotation', 'izap_forum_post_delete_hook');
-  elgg_register_admin_menu_item('administer', 'email_template','email_template');
-
-}
+  }
 
 /**
  * this will run on activation of plugin and push the class name with the subtype
