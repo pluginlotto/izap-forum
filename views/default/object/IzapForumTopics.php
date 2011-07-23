@@ -14,12 +14,11 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
   $sticky_class = ($topic->sticky_topic == 'yes') ? 'style="background-color: #FFE9E9;"' : '';
 ?>
   <div class="izap_forum_topic" <?php echo $sticky_class ?>>
-    <a href="<?php echo $topic->getURL(); ?>">
+    
       <div class="izap-forum-icon">
       <?php echo elgg_view('profile/icon', array('entity' => $topic->getOwnerEntity(), 'size' => 'small', 'override' => true)); ?>
     </div>
-  </a>
-  <div class="title">
+   <div class="title">
 
     <a href="<?php echo $topic->getURL(); ?>" title ="<?php echo $topic->title ?>">
       <b><?php echo ucfirst($topic->getTitle(array('mini' => true, 'max_length' => 50))); ?></b>
@@ -32,7 +31,7 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
             'action' => 'add_topic',
             'vars' => array($topic->guid),
             'page_owner' => false
-        ))
+        ));
     ?>">
        <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/edit.png' ?>" />
      </a>
@@ -84,7 +83,7 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
       $user = get_user($topic->last_post_by);
       if ($user) {
  ?>
-        <a href="'<?php echo $user->getURL() ?>'" >
+        <a href="<?php echo $user->getURL() ?>" >
           <img src="<?php echo $user->getIconURL('small'); ?>" alt="<?php echo $user->name?>"/>
     </a><br />
     <?php
