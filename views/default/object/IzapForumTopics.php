@@ -14,7 +14,7 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
   $sticky_class = ($topic->sticky_topic == 'yes') ? 'style="background-color: #FFE9E9;"' : '';
 ?>
   <div class="izap_forum_topic" <?php echo $sticky_class ?>>
-    
+
       <div class="izap-forum-icon">
       <?php echo elgg_view('profile/icon', array('entity' => $topic->getOwnerEntity(), 'size' => 'small', 'override' => true)); ?>
     </div>
@@ -78,7 +78,7 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
     ?>
     </div>
 
-    <div class="stats image" style="width: 20%">
+    <div class="stats image" style="width: 17%">
     <?php
       $user = get_user($topic->last_post_by);
       if ($user) {

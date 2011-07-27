@@ -135,7 +135,8 @@ background-color: #ffffff;
 }
 
 .izap-forum-desc {
-font-size:9px;
+margin-top:5px;
+font-size:12px;
 }
 
 .stats {
