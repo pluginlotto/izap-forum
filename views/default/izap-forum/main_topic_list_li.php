@@ -28,7 +28,7 @@ $topics = elgg_extract('topics', $vars);
     <?php echo $topic->getLink(array(
               'text' => $topic->getTitle(array(
                   'mini' => true,
-                  'max_length' => 17)) . ' - ' . (int) $topic->total_topics,
+                  'max_length' => 15)) . ' - ' . (int) $topic->total_topics,
               'title' => $topic->title
           ));
     if ($topic->canEdit(elgg_get_logged_in_user_guid())) :
