@@ -211,6 +211,11 @@ margin:5px;
 padding:2px;
 }
 
+.annotation_time {
+float: right;
+}
+
+
 .discussion_info {
 width:100%;
 }

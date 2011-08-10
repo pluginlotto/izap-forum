@@ -13,10 +13,6 @@
  */
 ?>
 <div class="discussions">
-<!--  <div class="discussion_title">
-    
-  </div>-->
-
   <div class="discussions_list">
     <?php echo $vars['discussion_list']; ?>
   </div>
