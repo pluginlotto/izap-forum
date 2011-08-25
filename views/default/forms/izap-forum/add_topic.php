@@ -44,7 +44,7 @@ $body .= IzapBase::input('longtext', array(
 $body .= IzapBase::input('text', array(
             'input_title' => elgg_echo('izap-forum:add_topic:tag'),
             'internalname' => 'attributes[tags]',
-            'value' => $main_topic->tags
+            'value' => implode(',',$main_topic->tags)
         ));
 
 $body .= IzapBase::input('access', array(

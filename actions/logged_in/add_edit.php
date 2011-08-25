@@ -24,7 +24,10 @@ if (IzapBase::hasFormError()) {
   forward($_SERVER['HTTP_REFERER']);
 }
 $posted_array = IzapBase::getPostedAttributes();
+
 $izap_topic = new IzapForumTopic($posted_array['guid']);
+IzapBase::updatePostedAttribute('tags', string_to_tag_array($posted_array['tags']));
+
 $izap_topic->setAttributes();
 if ($izap_topic->save()) {
   if (isset($posted_array['sticky'][0]) && $posted_array['sticky'][0] == 'yes') {

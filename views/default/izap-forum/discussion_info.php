@@ -43,7 +43,7 @@ $info = array(
   </tr>
 <?php endforeach; ?>
   <tr><td><?php
-  echo elgg_view('output/tags', array('value' => array_slice(explode(',',$subtopic->tags),0,5))); ?></td>
+  echo elgg_view('output/tags', array('value' => array_slice($subtopic->tags,0,5))); ?></td>
   
   </tr>
 </table>
