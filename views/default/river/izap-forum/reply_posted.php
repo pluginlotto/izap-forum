@@ -14,15 +14,17 @@
 //c($vars['item']);
 
 $description = get_annotation($vars['item']->annotation_id)->value;
-$post = get_entity($vars['item']->object_guid)->title;
-//$description = $post->description;
+/**
+ * forum reply river view.
+ */
 
+$object = $vars['item']->getObjectEntity();
+$excerpt = strip_tags($object->excerpt);
+$excerpt = elgg_get_excerpt($excerpt);
 
-$string = "<div class=\"river_content_display\">";
-$string .= ' has replied on  ' .$post;
-
-$string .= '<br />'.$description;
-$string .= '</div><div class="clearfloat"></div>';
-echo $string;
-
+echo elgg_view('river/item', array(
+	'item' => $vars['item'],
+	'message' => $description,
+    
+));
 

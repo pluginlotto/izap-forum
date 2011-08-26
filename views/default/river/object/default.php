@@ -27,4 +27,14 @@ if(strlen($contents) > 200) {
   $string .= $contents;
 }
 $string .= "</div><div class=\"clearfloat\"></div>";
-echo $string;
+ $string;
+
+$object = $vars['item']->getObjectEntity();
+$excerpt = strip_tags($object->excerpt);
+$excerpt = elgg_get_excerpt($excerpt);
+
+echo elgg_view('river/item', array(
+	'item' => $vars['item'],
+	'message' => $contents,
+
+));

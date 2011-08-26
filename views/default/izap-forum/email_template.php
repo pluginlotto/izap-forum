@@ -15,5 +15,5 @@ $post = elgg_extract('post', $vars);
 $user = get_entity($izapForumTopic->owner_guid);
 
 $message = 'There is new reply on topic: <a href="' . $izapForumTopic->getUrl() . '#forum_post_' . $post->id . '"><b>' . $izapForumTopic->title . '</b></a>
-    by: <a href="' . $user->getUrl() . '" >' . $user->name . '</a><p>"' . $post->value . '"</p> Visit : ' . $izapForumTopic->getUrl();
+    created by: <a href="' . $user->getUrl() . '" >' . $user->name . '</a><p>"' . $post->value . '"</p> Visit : ' . $izapForumTopic->getUrl();
 echo $message;

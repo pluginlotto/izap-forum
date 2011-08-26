@@ -68,5 +68,8 @@ add_translation('en', array(
 
 
      'izap-forum:post_successfull' => 'Post successfully posted',
+    'river:posted:object:IzapForumTopics' => '%s has replied on : %s',
+    'river:updated:object:IzapForumTopics'=>'%s has updated Topic : %s',
+    'river:created:object:IzapForumTopics'=>'%s has created new Topic : %s'
 
 ));
