@@ -22,12 +22,12 @@ $parent = $vars['parent'];
 $body = '<div class ="form_layout">';
 $body .= IzapBase::input('text', array(
             'input_title' => elgg_echo('izap-forum:add_topic:title'),
-            'internalname' => 'attributes[_title]',
+            'name' => 'attributes[_title]',
             'value' => $main_topic->title
         ));
 
 $body .= elgg_view('input/checkboxes', array(
-            'internalname' => 'attributes[sticky]',
+            'name' => 'attributes[sticky]',
             'options' => array(
                 elgg_echo('izap-forum:add_topic:sticky_topic') => 'yes',
             )
@@ -37,38 +37,38 @@ $body .= elgg_view('input/checkboxes', array(
 
 $body .= IzapBase::input('longtext', array(
             'input_title' => elgg_echo('izap-forum:add_topic:description'),
-            'internalname' => 'attributes[description]',
+            'name' => 'attributes[description]',
             'value' => $main_topic->description
         ));
 
 $body .= IzapBase::input('text', array(
             'input_title' => elgg_echo('izap-forum:add_topic:tag'),
-            'internalname' => 'attributes[tags]',
+            'name' => 'attributes[tags]',
             'value' => implode(',',$main_topic->tags)
         ));
 
 $body .= IzapBase::input('access', array(
             'input_title' => elgg_echo('izap-forum:add_topic:access'),
-            'internalname' => 'attributes[_access_id]',
+            'name' => 'attributes[_access_id]',
             'value' => (isset($main_topic->access_id)) ? $main_topic->access_id : ACCESS_PUBLIC
         ));
 
 $body .= elgg_view('input/hidden', array(
-            'internalname' => 'attributes[plugin]',
+            'name' => 'attributes[plugin]',
             'value' => GLOBAL_IZAP_FORUM_PLUGIN
         ));
 
 $body .= '</div>';
 if (isset($parent)) {
     $body .= elgg_view('input/hidden', array(
-                'internalname' => 'attributes[parent_guid]',
+                'name' => 'attributes[parent_guid]',
                 'value' => $parent->guid
             ));
 }
 
 $body .= IzapBase::input('submit');
 $body .= elgg_view('input/hidden', array(
-            'internalname' => 'attributes[guid]',
+            'name' => 'attributes[guid]',
             'value' => $main_topic->guid
         ));
 

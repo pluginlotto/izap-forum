@@ -195,6 +195,7 @@ decoration: none;
 .annotation_content {
 float:left;
 width:430px;
+ 
 }
 
 .discussion_title {
@@ -212,7 +213,9 @@ padding:2px;
 }
 
 .annotation_time {
-float: right;
+
+color:#ad6b6b;
+font-weight:bold;
 }
 
 

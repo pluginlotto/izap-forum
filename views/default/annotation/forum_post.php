@@ -24,14 +24,15 @@ $user = get_entity($annotation->owner_guid);
       </a>
       <span class="username">
         <a href="<?php echo $user->getURL(); ?>"><?php echo $user->name?></a>
-      </span><span class="annotation_time">
-        <?php echo elgg_get_friendly_time(get_entity($vars['guid'])->last_post_at)?>
       </span>
     </div>
   </div>
 
   <div class="annotation_content">
     <?php echo $annotation->value; ?>
+    <span class="annotation_time">
+        <?php echo elgg_get_friendly_time(get_entity($vars['guid'])->last_post_at)?>
+      </span>
   </div>
   <div class="clearfloat"></div>
 </div>
