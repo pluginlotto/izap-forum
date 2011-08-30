@@ -20,7 +20,7 @@ $contents = strip_tags($object->description); //strip tags from the contents to 
 $string = $url . ' has '.$vars['item']->action_type.' '  . elgg_echo('item:' . $object->getType() . ':' . $object->getSubtype() . ':singular') . ' ';
 $string .= " <a href=\"" . $object->getURL() . "\">" . $object->title . "</a>";
 $string .= "<div class=\"river_content_display\">";
-$string .= '<a href="'.$object->getURL().'"><img src="'.$object->getIcon().'" align="left" class="izap_river_icon"/></a>';
+$string .= '<a href="'.$object->getURL().'"><img src="'.$object->getIconURL().'" align="left" class="izap_river_icon"/></a>';
 if(strlen($contents) > 200) {
   $string .= substr($contents, 0, strpos($contents, ' ', 200)) . "...";
 }else {

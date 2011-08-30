@@ -87,7 +87,7 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
           <img src="<?php echo $user->getIconURL('small'); ?>" alt="<?php echo $user->name?>"/>
     </a><br />
     <?php
-        echo friendly_time($topic->last_post_at);
+        echo elgg_view_friendly_time($topic->last_post_at);
       }
     ?>
     </div>

@@ -13,7 +13,7 @@
  */
 //c($vars['item']);
 
-$description = get_annotation($vars['item']->annotation_id)->value;
+$description = elgg_get_annotation_from_id($vars['item']->annotation_id)->value;
 /**
  * forum reply river view.
  */
