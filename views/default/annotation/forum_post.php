@@ -13,7 +13,6 @@
  */
 $annotation = $vars['annotation'];
 $user = get_entity($annotation->owner_guid);
-//c($entity = get_entity($annotation->entity_guid));
 ?>
 <div class="annotation_wrapper">
   
@@ -21,18 +20,21 @@ $user = get_entity($annotation->owner_guid);
     <div class="annotation_icon">
       <a href="<?php echo $user->getURL(); ?>">
         <img src="<?php echo $user->getIconURL('large'); ?>" alt="<?php echo $user->name ?>" height="140" width="138"/>
-      </a>
+      </a>Posted by:
       <span class="username">
-        <a href="<?php echo $user->getURL(); ?>"><?php echo $user->name?></a>
+        <a href="<?php echo $user->getURL(); ?>"><?php echo strlen($user->name)>10?substr($user->name,0,8).'...':$user->name?></a>
+       <br/>
+      
+        <span class="annotation_time">
+        <?php echo elgg_get_friendly_time(get_entity($vars['guid'])->last_post_at)?>
+      </span>
       </span>
     </div>
   </div>
 
   <div class="annotation_content">
     <?php echo $annotation->value; ?>
-    <span class="annotation_time">
-        <?php echo elgg_get_friendly_time(get_entity($vars['guid'])->last_post_at)?>
-      </span>
+    
   </div>
   <div class="clearfloat"></div>
 </div>

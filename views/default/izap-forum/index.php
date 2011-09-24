@@ -19,7 +19,6 @@ $parent = elgg_Extract('topic', $vars);
     
     ?>
 
- 
   <tr class ="header_background">
     <th>
       <?php

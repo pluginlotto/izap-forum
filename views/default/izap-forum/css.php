@@ -49,7 +49,7 @@ width:20%;
 
 }
 .izap_forum_category_title {
-width: 60%;
+width: 57%;
 float: left;
 font-weight: bold;
 }
@@ -170,7 +170,7 @@ float:left;
 
 .annotation_icon {
 width:138px;
-height:160px;
+height:180px;
 border:1px solid #B9B9B9;
 padding: 2px;
 -moz-border-radius: 4px;
@@ -194,7 +194,7 @@ decoration: none;
 
 .annotation_content {
 float:left;
-width:430px;
+width:530px;
  
 }
 
@@ -213,9 +213,9 @@ padding:2px;
 }
 
 .annotation_time {
-
-color:#ad6b6b;
-font-weight:bold;
+text-align:center;
+color:#790417;
+font-size:0.9em;
 }
 
 

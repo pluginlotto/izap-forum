@@ -18,14 +18,14 @@ $info = array(
         'value' => $subtopic->total_posts),
     array(
         'name' => elgg_echo('izap_forum:discussion_views'),
-        'value' => IzapBase::getviews($subtopic)),
+        'value' => IzapBase::getTotalViews($subtopic)),
     array(
         'name' => elgg_echo('izap_forum:discussion_created_on'),
         'value' => elgg_get_friendly_time($subtopic->time_created)
     ),
     array(
         'name' => elgg_echo('izap_forum:discussion_created_by'),
-        'value' => IzapBase::getOwnerUsername($subtopic),
+        'value' => IzapBase::getOwnername($subtopic),
     )
 );
 ?>
