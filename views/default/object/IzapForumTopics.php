@@ -16,7 +16,7 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
   <div class="izap_forum_topic" <?php echo $sticky_class ?>>
 
       <div class="izap-forum-icon">
-      <?php echo elgg_view('profile/icon', array('entity' => $topic->getOwnerEntity(), 'size' => 'small', 'override' => true)); ?>
+      <?php echo elgg_view_entity_icon($topic->getOwnerEntity(),  'small', array('hover' => false)); ?>
     </div>
    <div class="title">
 
@@ -73,7 +73,7 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
       if ($topic->isMainTopic()) {
         echo (int) $topic->total_posts;
       } else {
-        echo (int) IzapBase::getViews($topic);
+        echo (int) IzapBase::getTotalViews($topic);
       }
     ?>
     </div>

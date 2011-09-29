@@ -147,6 +147,7 @@ class IzapForumController extends IzapController {
     $this->addWidget(GLOBAL_IZAP_FORUM_PLUGIN . '/discussion_info', array('subtopic' => $subtopic));
     $this->page_elements['title'] = $subtopic->title;
     $this->page_elements['title'] .= ' ' . $link;
+    $this->page_elements['page_title'] =$subtopic->title;
     $topic = get_entity($subtopic->parent_guid);
     elgg_push_breadcrumb($topic->title, IzapBase::setHref(array(
                 'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,

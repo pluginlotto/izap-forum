@@ -22,7 +22,7 @@ $topics = elgg_extract('topics', $vars);
   $sticky_class = ($topic->sticky_topic == 'yes' && (int) $vars['current_topic']->guid != $topic->guid) ? 'style="background-color: #FFE9E9;"' : '';?>
 <div class="topic_list <?php echo ((int) $vars['current_topic']->guid == $topic->guid) ? 'selected' : '' ?>"<?php echo $sticky_class?>  >
   <div class="topic_img">
-<?php echo elgg_view( 'profile/icon', array('entity' => $topic->getOwnerEntity(),'size' =>'tiny','override'=>true)); ?>
+<?php echo elgg_view_entity_icon($topic->getOwnerEntity(),'tiny',array('hover'=>false)); ?>
     </div>
   <div class="topic_title">
     <?php echo $topic->getLink(array(
