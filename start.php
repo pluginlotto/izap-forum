@@ -18,12 +18,8 @@ define('GLOBAL_IZAP_FORUM_CATEGORY_SUBTYPE', 'IzapForumCategories');
 define('GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE','IzapForumTopics');
 define('GLOBAL_IZAP_FORUM_TOPIC_CLASS','IzapForumTopic');
 // This will escape us from fatal error occurance when izap-bridge got deactivated after forum plugin activation
- if (elgg_is_active_plugin(GLOBAL_IZAP_ELGG_BRIDGE)) {
+ if (elgg_is_active_plugin(GLOBAL_IZAP_ELGG_BRIDGE))
     elgg_register_event_handler('init', 'system', 'izap_forum_init');
-  } else {
-    register_error('This plugin needs izap-elgg-bridge');
-    disable_plugin(GLOBAL_IZAP_FORUM_PLUGIN);
-  }
 
 
 function izap_forum_init() {
