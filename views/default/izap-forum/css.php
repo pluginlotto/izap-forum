@@ -233,6 +233,7 @@ background-color: #fff;
 padding: 10px;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
+margin-bottom: 10px;
 }
 .forum-widget .even{
 background-color: #CECECE;
