@@ -18,7 +18,7 @@ $info = array(
         'value' => $subtopic->total_posts),
     array(
         'name' => elgg_echo('izap_forum:discussion_views'),
-        'value' => IzapBase::getTotalViews($subtopic)),
+        'value' => IzapBase::getViews($subtopic)),
     array(
         'name' => elgg_echo('izap_forum:discussion_created_on'),
         'value' => elgg_get_friendly_time($subtopic->time_created)
@@ -29,22 +29,12 @@ $info = array(
     )
 );
 ?>
-<table class="discussion_info">
-  <caption class="info_caption">
-<?php echo elgg_echo('izap_forum:discussion_info');
-?>
-  </caption>
-<?php foreach ($info as $side_data):
-?>
-  <tr class="info_decorate"><td>
-<?php
-  echo $side_data['name'] . ' ' . '<b>' . $side_data['value'] . '</b>';
-?></td>
-  </tr>
-<?php endforeach; ?>
-  <tr><td><?php
-  echo elgg_view('output/tags', array('value' => array_slice($subtopic->tags,0,5))); ?></td>
-  
-  </tr>
-</table>
-
+<div class="forum-widget">
+ <h3><?php echo elgg_echo('izap_forum:discussion_info');?></h3>
+  <ol>
+  <?php foreach ($info as $key => $side_data):?>
+    <li class="<?php echo (!($key%2))?'odd':'even'; ?>" ><?php echo $side_data['name'] .  $side_data['value']; ?></li>
+  <?php endforeach; ?>
+    <li><?php echo elgg_view('output/tags', array('value' => array_slice($subtopic->tags,0,5)));?></li>
+  </ol>
+</div>

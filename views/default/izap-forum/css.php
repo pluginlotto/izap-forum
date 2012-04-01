@@ -164,37 +164,24 @@ font-weight: bold !important;
 }
 
 .annotation_sidebar {
-width: 150px;
+
 float:left;
 }
 
 .annotation_icon {
-width:138px;
-height:180px;
-border:1px solid #B9B9B9;
-padding: 2px;
--moz-border-radius: 4px;
-background-color: #DEDEDE;
+ margin-right:10px
 }
 
-.annotation_icon .username a{
-color: #790417;
-font-weight: bold;
-decoration: none;
+.annotation_content .username{
+text-align:right;
+color:grey;
+font-style:italic;
 }
 
-.annotation_icon .username a:hover{
-color: #000000;
-decoration: none;
-}
-
-.discussions {
-
-}
 
 .annotation_content {
 float:left;
-width:530px;
+width:664px;
  
 }
 
@@ -212,11 +199,6 @@ margin:5px;
 padding:2px;
 }
 
-.annotation_time {
-text-align:center;
-color:#790417;
-font-size:0.9em;
-}
 
 
 .discussion_info {
@@ -244,6 +226,20 @@ min-height: 25px;
 .izap-forum-title {
 width:100%;
 
+}
+
+.forum-widget{
+background-color: #fff;
+padding: 10px;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+}
+.forum-widget .even{
+background-color: #CECECE;
+}
+
+.forum-widget .even{
+background-color: #E8E8E8;
 }
 
 /**********************NEW CSS FOR FORUM*******************************************/
@@ -290,9 +286,9 @@ height:24px;
 border:none;
 }
 
-.discussions_list .elgg-list > li
+.discussions_list . elgg-list
 {
-border:none;
+list-style-type: none; 
 }
 
 .topic_title a{
@@ -303,5 +299,10 @@ display:block;
 float:right;
 width:33px;
 height:24px;
+
+}
+
+.sub_topic{
+margin-left:5px
 
 }

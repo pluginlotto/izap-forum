@@ -14,7 +14,9 @@
 ?>
 <div class="discussions">
   <div class="discussions_list">
+    <table>
     <?php echo $vars['discussion_list']; ?>
+      </table>
   </div>
 
   <div class="reply_form">

@@ -54,11 +54,11 @@ add_translation('en', array(
     'izap-forum:edit_topic' => 'Edit topic',
 
     //discussion sidebar language
-    'izap_forum:discussion_info' => 'Info',
-    'izap_forum:discussion_posts' => 'Posts:',
+    'izap_forum:discussion_info' => 'Topic stats',
+    'izap_forum:discussion_posts' => 'Posts: ',
     'izap_forum:discussion_views' => 'Views: ',
-    'izap_forum:discussion_created_on' => 'Discussion started : ',
-    'izap_forum:discussion_created_by' => 'Discussion started by:',
+    'izap_forum:discussion_created_on' => 'Discussion age: ',
+    'izap_forum:discussion_created_by' => 'Posted by: ',
     'izap_forum:discussion_tags' => 'Tags',
 
     //breadcrumb language

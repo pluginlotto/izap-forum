@@ -73,7 +73,7 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
       if ($topic->isMainTopic()) {
         echo (int) $topic->total_posts;
       } else {
-        echo (int) IzapBase::getTotalViews($topic);
+        echo (int) IzapBase::getViews($topic);
       }
     ?>
     </div>
