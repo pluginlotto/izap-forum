@@ -11,8 +11,17 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
+
 $annotation = $vars['annotation'];
+
 $user = get_entity($annotation->owner_guid);
+
+$img = $CONFIG->wwwroot . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/delete.png';
+
+$delete_link = elgg_view('output/confirmlink', array(
+                  'href' =>izapBase::getFormAction('delete', GLOBAL_IZAP_FORUM_PLUGIN) . "?id=" . $annotation->id ,
+                  'text' => '<img src="'.$img.'" />'
+              ));
 ?>
 <div class="annotation_wrapper">
   
@@ -25,6 +34,9 @@ $user = get_entity($annotation->owner_guid);
   </div>
 
   <div class="annotation_content" >
+    <?php if (elgg_is_admin_logged_in ()): ?>
+      <div style="float: right"><?php echo $delete_link; ?></div>
+    <?php endif;?>
     <?php echo $annotation->value; ?>
       <div class="username" >
         <a href="<?php echo $user->getURL(); ?>"><?php echo $user->name;?></a>

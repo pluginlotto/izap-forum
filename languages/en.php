@@ -52,6 +52,8 @@ add_translation('en', array(
     'izap-forum:add_topic:access' => 'Access',
     'izap-forum:add_topic' => 'Add new topic',
     'izap-forum:edit_topic' => 'Edit topic',
+    'izap-forum:delete:reply' => 'Post successfully deleted',
+    'izap-forum:cannot:delete' => 'Cannot delete this post',
 
     //discussion sidebar language
     'izap_forum:discussion_info' => 'Topic stats',
