@@ -12,15 +12,16 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
-add_translation('en', array(
 
+/*
+ * language file for izap-forum
+ */
+add_translation('en', array(
     /* New Language for the forum */
     'izap-forum:forum' => 'Forum',
-
     //add category form language
-        'izap-forum:add_category:title' => 'Title',
+    'izap-forum:add_category:title' => 'Title',
     'izap-forum:add_category:description' => 'Description',
-    
     //index page language
     'izap-forum:controller:index' => 'Index',
     'izap_forum:topic_forum' => 'Forum',
@@ -36,12 +37,12 @@ add_translation('en', array(
     'izap-forum:topic_title' => 'Topics',
     'izap_forum:index_add_discussion' => 'Add subtopic',
     'izap_forum:index_topic_sub' => ' - Discussions',
-    'izap_forum:index_no_topic_available' =>'No subtopic available for this topic',
+    'izap_forum:index_no_topic_available' => 'No subtopic available for this topic',
     'izap_forum_:index_no_main_topic' => 'No main topic yet has been created.<br/> Click on Add new to add new discussion',
     'izap-forum:list_topics' => 'Topics',
     //Add topic form language
 
-     'izap-forum:add_topic_form_field_missing' => 'Required fields are missing',
+    'izap-forum:add_topic_form_field_missing' => 'Required fields are missing',
     'izap-forum:add_topic:topic_successfull' => 'Topic added successfully',
     'izap-forum:add_topic:title' => 'Title',
     'izap-forum:add_topic:sticky_topic' => 'Sticky topic',
@@ -54,7 +55,6 @@ add_translation('en', array(
     'izap-forum:edit_topic' => 'Edit topic',
     'izap-forum:delete:reply' => 'Post successfully deleted',
     'izap-forum:cannot:delete' => 'Cannot delete this post',
-
     //discussion sidebar language
     'izap_forum:discussion_info' => 'Topic stats',
     'izap_forum:discussion_posts' => 'Posts: ',
@@ -62,16 +62,12 @@ add_translation('en', array(
     'izap_forum:discussion_created_on' => 'Discussion age: ',
     'izap_forum:discussion_created_by' => 'Posted by: ',
     'izap_forum:discussion_tags' => 'Tags',
-
     //breadcrumb language
 
     'izap-forum:breadcrumb_addtopic' => 'Add new',
     'izap-forum:breadcrumb_index' => 'Index',
-
-
-     'izap-forum:post_successfull' => 'Post successfully posted',
+    'izap-forum:post_successfull' => 'Post successfully posted',
     'river:posted:object:IzapForumTopics' => '%s has replied on : %s',
-    'river:updated:object:IzapForumTopics'=>'%s has updated Topic : %s',
-    'river:created:object:IzapForumTopics'=>'%s has created new Topic : %s'
-
+    'river:updated:object:IzapForumTopics' => '%s has updated Topic : %s',
+    'river:created:object:IzapForumTopics' => '%s has created new Topic : %s'
 ));

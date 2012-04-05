@@ -11,15 +11,19 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
+
+/**
+ * form listing
+ */
 $nav = elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
 ?>
 <div class ="elgg-col-1of1 izap-table-cols">
-  <?php echo $nav?>
+  <?php echo $nav ?>
   <div class="elgg-col elgg-col-1of3">
-<?php echo $vars['sidebar'];?>
+    <?php echo $vars['sidebar']; ?>
   </div>
 
   <div class="elgg-col elgg-col-2of3">
-<?php echo $vars['content'];?>
+    <?php echo $vars['content']; ?>
   </div>
 </div>

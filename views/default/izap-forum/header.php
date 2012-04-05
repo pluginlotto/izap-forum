@@ -11,11 +11,12 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
+
 $header_array = elgg_extract('header_elements', $vars);
 
-//$header_array='';
+
 ?>
-<!--<div class="izap_forum_category_wrapper">-->
+
 <div>
     <div class="izap_forum_category_title">
         <?php

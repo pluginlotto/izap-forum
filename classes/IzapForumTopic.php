@@ -1,4 +1,5 @@
 <?php
+
 /* * ************************************************
  * PluginLotto.com                                 *
  * Copyrights (c) 2005-2010. iZAP                  *
@@ -18,10 +19,18 @@ class IzapForumTopic extends IzapObject {
     parent::__construct($guid);
   }
 
+  /*
+   * add attributes 
+   */
+
   public function initializeAttributes() {
     parent::initializeAttributes();
     $this->attributes['subtype'] = GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE;
   }
+
+  /*
+   * get attributes
+   */
 
   public function getAttributesArray() {
     return array(
@@ -35,6 +44,10 @@ class IzapForumTopic extends IzapObject {
     );
   }
 
+  /*
+   * check for main topic
+   */
+
   public function isMainTopic() {
     if ($this->forum_main_topics == 'yes') {
       return TRUE;
@@ -42,6 +55,10 @@ class IzapForumTopic extends IzapObject {
 
     return FALSE;
   }
+
+  /*
+   * delete topic
+   */
 
   public function delete() {
     IzapBase::loadlib(array(
@@ -70,6 +87,10 @@ class IzapForumTopic extends IzapObject {
     return delete_entity($this->guid);
   }
 
+  /*
+   * url for detail post
+   */
+
   public function getURL() {
     if ($this->isMainTopic()) {
       $url = IzapBase::setHref(array(
@@ -92,12 +113,17 @@ class IzapForumTopic extends IzapObject {
     return $url;
   }
 
+  /*
+   * icon url
+   */
+
   public function getIconURL($size = 'small') {
     return IzapBase::setHref(array(
-                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                'action' => 'icon',
-                'page_owner' => FALSE,
-                'vars' => array($this->guid, $size,)
-            )) . $this->time_updated . ".jpg";
-}
+        'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+        'action' => 'icon',
+        'page_owner' => FALSE,
+        'vars' => array($this->guid, $size,)
+    )) . $this->time_updated . ".jpg";
+  }
+
 }

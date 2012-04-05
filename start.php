@@ -22,16 +22,20 @@ define('GLOBAL_IZAP_FORUM_TOPIC_CLASS', 'IzapForumTopic');
 if (elgg_is_active_plugin(GLOBAL_IZAP_ELGG_BRIDGE))
   elgg_register_event_handler('init', 'system', 'izap_forum_init');
 
+/**
+ * start init function
+ * @global array $CONFIG
+ */
 function izap_forum_init() {
   global $CONFIG;
   izap_plugin_init(GLOBAL_IZAP_FORUM_PLUGIN);
   elgg_register_page_handler(GLOBAL_IZAP_FORUM_PAGEHANDLER, GLOBAL_IZAP_PAGEHANDLER);
 
   $menu_item = new ElggMenuItem('forum', elgg_Echo('izap-forum:forum'), IzapBase::setHref(array(
-            'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-            'action' => 'index',
-            'page_owner' => FALSE
-          )));
+                      'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+                      'action' => 'index',
+                      'page_owner' => FALSE
+                  )));
 
   elgg_register_menu_item('site', $menu_item);
   elgg_register_event_handler('create', 'annotation', 'izap_forum_post_hook');
@@ -48,13 +52,13 @@ function izap_forum_post_hook($event, $object_type, $object) {
 
     function tmp_func($entity) {
       IzapBase::updateMetadata(array(
-        'entity' => $entity,
-        'metadata' => array(
-          'total_posts' => (int) $entity->total_posts + 1,
-          'last_post_by' => elgg_get_logged_in_user_guid(),
-          'last_post_at' => time(),
-        ),
-      ));
+                  'entity' => $entity,
+                  'metadata' => array(
+                      'total_posts' => (int) $entity->total_posts + 1,
+                      'last_post_by' => elgg_get_logged_in_user_guid(),
+                      'last_post_at' => time(),
+                  ),
+              ));
     }
 
     // update the post count
@@ -69,17 +73,24 @@ function izap_forum_post_hook($event, $object_type, $object) {
   return TRUE;
 }
 
+/**
+ * forum delete hook
+ * @param <type> $event
+ * @param <type> $object_type
+ * @param <type> $object
+ * @return <type>
+ */
 function izap_forum_post_delete_hook($event, $object_type, $object) {
   $entity = get_entity($object->entity_guid);
   if ($entity instanceof IzapForumTopic) {
 
     function tmp_func($entity) {
       IzapBase::updateMetadata(array(
-        'entity' => $entity,
-        'metadata' => array(
-          'total_posts' => (int) $entity->total_posts - 1,
-        ),
-      ));
+                  'entity' => $entity,
+                  'metadata' => array(
+                      'total_posts' => (int) $entity->total_posts - 1,
+                  ),
+              ));
     }
 
     // update the post count
@@ -94,6 +105,10 @@ function izap_forum_post_delete_hook($event, $object_type, $object) {
   return TRUE;
 }
 
+/**
+ * forum link hook
+ * @return bolean
+ */
 function izap_forum_link_hook() {
   if (elgg_get_context() == GLOBAL_IZAP_FORUM_PAGEHANDLER) {
     elgg_extend_view('page/elements/footer', 'output/ilink');

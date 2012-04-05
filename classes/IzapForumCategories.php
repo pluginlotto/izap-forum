@@ -15,33 +15,45 @@
 
 class IzapForumCategories extends IzapObject {
 
-    public function __construct($guid = null) {
-        parent::__construct($guid);
-    }
+  public function __construct($guid = null) {
+    parent::__construct($guid);
+  }
 
-    public function initializeAttributes() {
-        parent::initializeAttributes();
-    }
+  /*
+   * add attributes 
+   */
 
-    public function getAttributesArray() {
-        return array(
-            'title' => array(),
-            'description' => array(),
-            'access_id' =>array(),
-        );
-    }
+  public function initializeAttributes() {
+    parent::initializeAttributes();
+  }
 
-    public function getURL() {
-      $url = IzapBase::setHref(array(
-          'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-          'action' => 'index',
-          'page_owner' => FALSE,
-          'vars' => array($this->guid, elgg_get_friendly_title($this->title)),
-          'trailing_slash' => FALSE
-      ));
+  /*
+   * get attributes
+   */
 
-      return $url;
-    }
+  public function getAttributesArray() {
+    return array(
+        'title' => array(),
+        'description' => array(),
+        'access_id' => array(),
+    );
+  }
+
+  /*
+   * get url
+   */
+
+  public function getURL() {
+    $url = IzapBase::setHref(array(
+                'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+                'action' => 'index',
+                'page_owner' => FALSE,
+                'vars' => array($this->guid, elgg_get_friendly_title($this->title)),
+                'trailing_slash' => FALSE
+            ));
+
+    return $url;
+  }
 
 }
 

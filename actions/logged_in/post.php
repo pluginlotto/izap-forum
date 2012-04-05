@@ -13,6 +13,9 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+/*
+ * reply to post
+ */
 IzapBase::gatekeeper();
 
 $posted_data = IzapBase::getPostedAttributes();
@@ -46,25 +49,25 @@ if ($subtopic_post) {
   //send emails to all the involved users about the post
   if ($subtopic_post->emails_to_notify) {
     $email_ids = (array) $subtopic_post->emails_to_notify;
-      foreach ($email_ids as $email) {
-        $send_array['subject'] = 'There is new reply on topic: ' . $subtopic_post->title;
-        $send_array['to'] = $email;
-        $send_array['from_username'] = $CONFIG->site->name;
-        $send_array['from'] = $CONFIG->site->email;
-        $send_array['msg'] = elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/email_template', array('topic' => $subtopic_post, 'post' => $latest_comment[0]));
-       // c($send_array);
-        IzapBase::sendMail($send_array);
-      }
+    foreach ($email_ids as $email) {
+      $send_array['subject'] = 'There is new reply on topic: ' . $subtopic_post->title;
+      $send_array['to'] = $email;
+      $send_array['from_username'] = $CONFIG->site->name;
+      $send_array['from'] = $CONFIG->site->email;
+      $send_array['msg'] = elgg_view(GLOBAL_IZAP_FORUM_PLUGIN . '/email_template', array('topic' => $subtopic_post, 'post' => $latest_comment[0]));
+      // c($send_array);
+      IzapBase::sendMail($send_array);
+    }
   }
   add_to_river(
-          'river/'.GLOBAL_IZAP_FORUM_PLUGIN . '/reply_posted' ,
+          'river/' . GLOBAL_IZAP_FORUM_PLUGIN . '/reply_posted',
           'posted',
           elgg_get_logged_in_user_guid(),
           $subtopic_post->guid,
           '',
           '',
           $latest_comment[0]->id);
-  
+
   system_message(elgg_Echo('izap-forum:post_successfull'));
 } else {
   register_error(elgg_Echo('izap-forum:post_error'));

@@ -13,6 +13,9 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+/**
+ * add topic
+ */
 $main_topic = IzapBase::getFormValues(array('entity' => $vars['entity'], 'plugin' => GLOBAL_IZAP_FORUM_PLUGIN));
 
 $parent = $vars['parent'];
@@ -42,11 +45,11 @@ $body .= IzapBase::input('longtext', array(
             'value' => $main_topic->description
         ));
 
-/*$body .= IzapBase::input('text', array(
-            'input_title' => elgg_echo('izap-forum:add_topic:tag'),
-            'name' => 'attributes[tags]',
-            'value' => implode(',',$main_topic->tags)
-        ));*/
+/* $body .= IzapBase::input('text', array(
+  'input_title' => elgg_echo('izap-forum:add_topic:tag'),
+  'name' => 'attributes[tags]',
+  'value' => implode(',',$main_topic->tags)
+  )); */
 
 $body .= IzapBase::input('access', array(
             'input_title' => elgg_echo('izap-forum:add_topic:access'),
@@ -61,10 +64,10 @@ $body .= elgg_view('input/hidden', array(
 
 $body .= '</div>';
 if (isset($parent)) {
-    $body .= elgg_view('input/hidden', array(
-                'name' => 'attributes[parent_guid]',
-                'value' => $parent->guid
-            ));
+  $body .= elgg_view('input/hidden', array(
+              'name' => 'attributes[parent_guid]',
+              'value' => $parent->guid
+          ));
 }
 
 $body .= izapBase::input('categories');
@@ -78,7 +81,7 @@ $body .= elgg_view('input/hidden', array(
 echo elgg_view('input/form', array(
     'body' => $body,
     'action' => IzapBase::getFormAction('add_edit', GLOBAL_IZAP_FORUM_PLUGIN),
-    'enctype' =>'multipart/form-data'
+    'enctype' => 'multipart/form-data'
 ));
 
 

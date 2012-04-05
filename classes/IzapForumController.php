@@ -13,6 +13,10 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+/*
+ * izap-forum controller
+ */
+
 class IzapForumController extends IzapController {
 
   public function __construct($page) {
@@ -29,6 +33,10 @@ class IzapForumController extends IzapController {
                 'action' => 'index'
             )));
   }
+
+  /*
+   * default action for forum listing
+   */
 
   public function actionIndex() {
     $query = array(
@@ -96,6 +104,10 @@ class IzapForumController extends IzapController {
     $this->drawPage();
   }
 
+  /*
+   * add topic action
+   */
+
   public function actionAdd_topic() {
     IzapBase::gatekeeper();
     $this->page_layout = 'content';
@@ -114,6 +126,10 @@ class IzapForumController extends IzapController {
     }
     $this->render('forms/' . GLOBAL_IZAP_FORUM_PLUGIN . '/add_topic', array('entity' => $topic));
   }
+
+  /*
+   * forum discusstion
+   */
 
   public function actionDiscussion() {
     global $CONFIG;
@@ -146,7 +162,7 @@ class IzapForumController extends IzapController {
     }
     $this->addWidget(GLOBAL_IZAP_FORUM_PLUGIN . '/discussion_info', array('subtopic' => $subtopic));
     $this->page_elements['title'] = $subtopic->title;
-    $this->page_elements['page_title'] =$subtopic->title;
+    $this->page_elements['page_title'] = $subtopic->title;
     $topic = get_entity($subtopic->parent_guid);
     elgg_push_breadcrumb($topic->title, IzapBase::setHref(array(
                 'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
@@ -164,6 +180,10 @@ class IzapForumController extends IzapController {
         'form' => elgg_view('forms/' . GLOBAL_IZAP_FORUM_PLUGIN . '/post', array('subtopic' => $subtopic)),
     ));
   }
+
+  /*
+   * add subtopic to forum
+   */
 
   public function actionAdd_sub_topic() {
     IzapBase::gatekeeper();
@@ -187,6 +207,10 @@ class IzapForumController extends IzapController {
     $this->page_elements['title'] = elgg_echo('izap-forum:add_topic');
     $this->render('forms/' . GLOBAL_IZAP_FORUM_PLUGIN . '/add_topic', array('entity' => $sub_topic, 'parent' => $topic));
   }
+
+  /*
+   * get user icon
+   */
 
   public function actionIcon() {
     $topic = get_entity($this->url_vars[1]);

@@ -11,6 +11,10 @@
  * For discussion about corresponding plugins, visit http://www.pluginlotto.com/pg/forums/
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
+
+/**
+ * add discussion status widget
+ */
 $subtopic = elgg_extract('subtopic', $vars);
 $info = array(
     array(
@@ -30,11 +34,11 @@ $info = array(
 );
 ?>
 <div class="forum-widget">
- <h3><?php echo elgg_echo('izap_forum:discussion_info');?></h3>
+  <h3><?php echo elgg_echo('izap_forum:discussion_info'); ?></h3>
   <ol>
-  <?php foreach ($info as $key => $side_data):?>
-    <li class="<?php echo (!($key%2))?'odd':'even'; ?>" ><?php echo $side_data['name'] .  $side_data['value']; ?></li>
-  <?php endforeach; ?>
-    <li><?php echo elgg_view('output/tags', array('value' => array_slice($subtopic->tags,0,5)));?></li>
+    <?php foreach ($info as $key => $side_data): ?>
+      <li class="<?php echo (!($key % 2)) ? 'odd' : 'even'; ?>" ><?php echo $side_data['name'] . $side_data['value']; ?></li>
+    <?php endforeach; ?>
+      <li><?php echo elgg_view('output/tags', array('value' => array_slice($subtopic->tags, 0, 5))); ?></li>
   </ol>
 </div>

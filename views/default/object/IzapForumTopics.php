@@ -15,42 +15,42 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
 ?>
   <div class="izap_forum_topic" <?php echo $sticky_class ?>>
 
-      <div class="izap-forum-icon">
-      <?php echo elgg_view_entity_icon($topic->getOwnerEntity(),  'small', array('hover' => false)); ?>
-    </div>
-   <div class="title">
+    <div class="izap-forum-icon">
+    <?php echo elgg_view_entity_icon($topic->getOwnerEntity(), 'small', array('hover' => false)); ?>
+  </div>
+  <div class="title">
 
     <a href="<?php echo $topic->getURL(); ?>" title ="<?php echo $topic->title ?>">
       <b><?php echo ucfirst($topic->getTitle(array('mini' => true, 'max_length' => 50))); ?></b>
     </a>
     <?php if ($topic->canedit(elgg_get_logged_in_user_guid())) {
     ?>
-        <a href ="<?php
-        echo IzapBase::setHref(array(
-            'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-            'action' => 'add_topic',
-            'vars' => array($topic->guid),
-            'page_owner' => false
-        ));
+      <a href ="<?php
+      echo IzapBase::setHref(array(
+          'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+          'action' => 'add_topic',
+          'vars' => array($topic->guid),
+          'page_owner' => false
+      ));
     ?>">
-       <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/edit.png' ?>" />
-     </a>
+      <img src="<?php echo $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/edit.png' ?>" />
+    </a>
     <?php
-        $link_img = '<img src="' . $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/delete.png" />';
-        echo elgg_view('output/confirmlink', array(
-            'href' => IzapBase::deleteLink(array(
-                'guid' => $topic->guid,
-                'rurl' => IzapBase::setHref(array(
-                    'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
-                    'action' => 'index'
-                )),
-                'only_url' => true
-            )),
-            'text' => $link_img
-        ));
-      }
+       $link_img = '<img src="' . $vars['url'] . 'mod/' . GLOBAL_IZAP_FORUM_PLUGIN . '/_graphics/delete.png" />';
+       echo elgg_view('output/confirmlink', array(
+           'href' => IzapBase::deleteLink(array(
+               'guid' => $topic->guid,
+               'rurl' => IzapBase::setHref(array(
+                   'context' => GLOBAL_IZAP_FORUM_PAGEHANDLER,
+                   'action' => 'index'
+               )),
+               'only_url' => true
+           )),
+           'text' => $link_img
+       ));
+     }
     ?>
-      <div class="izap-forum-desc">
+     <div class="izap-forum-desc">
       <?php
       echo $topic->getDescription(array('mini' => TRUE, 'max_length' => 75));
       ?>
@@ -82,10 +82,10 @@ if (elgg_instanceof($topic, 'object', GLOBAL_IZAP_FORUM_TOPIC_SUBTYPE, GLOBAL_IZ
     <?php
       $user = get_user($topic->last_post_by);
       if ($user) {
- ?>
+    ?>
         <a href="<?php echo $user->getURL() ?>" >
-          <img src="<?php echo $user->getIconURL('small'); ?>" alt="<?php echo $user->name?>"/>
-    </a><br />
+          <img src="<?php echo $user->getIconURL('small'); ?>" alt="<?php echo $user->name ?>"/>
+        </a><br />
     <?php
         echo elgg_view_friendly_time($topic->last_post_at);
       }

@@ -13,6 +13,9 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+/*
+ * to add and delete
+ */
 
 IzapBase::loadlib(array(
             'plugin' => GLOBAL_IZAP_FORUM_PLUGIN,
@@ -31,21 +34,21 @@ IzapBase::updatePostedAttribute('tags', string_to_tag_array($posted_array['tags'
 $izap_topic->setAttributes();
 if ($izap_topic->save()) {
   if (isset($posted_array['sticky'][0]) && $posted_array['sticky'][0] == 'yes') {
-  $izap_topic->sticky_topic = 'yes';
+    $izap_topic->sticky_topic = 'yes';
   } else {
-      $izap_topic->sticky_topic = 'no';
+    $izap_topic->sticky_topic = 'no';
   }
 
-  if($izap_topic->parent_guid){
-     $izap_topic->forum_main_topics = 'no';
-     $izap_topic->updation_time = time();
-     if (!$posted_array['guid']) {
+  if ($izap_topic->parent_guid) {
+    $izap_topic->forum_main_topics = 'no';
+    $izap_topic->updation_time = time();
+    if (!$posted_array['guid']) {
       izap_update_total_topics_byizap(get_entity($izap_topic->parent_guid));
       $izap_topic->annotate('forum_post', $izap_topic->description, $izap_topic->access_id);
-     }
-  }else{
-     $izap_topic->forum_main_topics = 'yes';
-     $izap_topic->updation_time = time();
+    }
+  } else {
+    $izap_topic->forum_main_topics = 'yes';
+    $izap_topic->updation_time = time();
   }
 
   elgg_clear_sticky_form(GLOBAL_IZAP_FORUM_PLUGIN);
@@ -57,17 +60,15 @@ if ($izap_topic->save()) {
                 'owner_guid' => $izap_topic->owner_guid,
                 'create_thumbs' => TRUE
             ));
-  }else if($izap_topic->parent_guid){
+  } else if ($izap_topic->parent_guid) {
     IzapBase::saveImageFile(array(
                 'destination' => 'forumtopics/' . $izap_topic->guid . '/icon',
-                'content' => IzapBase::getfile(array('source' => 'forumtopics/' . $izap_topic->parent_guid . '/icon.jpg','owner_id' => get_entity($izap_topic->parent_guid)->owner_guid)),
+                'content' => IzapBase::getfile(array('source' => 'forumtopics/' . $izap_topic->parent_guid . '/icon.jpg', 'owner_id' => get_entity($izap_topic->parent_guid)->owner_guid)),
                 'owner_guid' => $izap_topic->owner_guid,
                 'create_thumbs' => TRUE
             ));
-  
-   
   }
-  
+
 
 
   system_message(elgg_echo('izap-forum:add_topic:topic_successfull'));

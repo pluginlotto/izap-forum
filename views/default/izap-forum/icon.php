@@ -12,6 +12,9 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+/**
+ *  user profile icon
+ */
 $topic = elgg_extract('entity', $vars);
 $size = elgg_extract('size', $vars);
 
