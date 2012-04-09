@@ -19,6 +19,22 @@
         <name>izap-elgg-bridge</name>
         <version>2.0</version>
     </requires>
+    <screenshot>
+    <description>Forum add new topic</description>
+    <path>screenshots/Forum-addnew-topic-form.png</path>
+  </screenshot>
+  <screenshot>
+    <description>Forum add subtopic</description>
+    <path>screenshots/Forum-addnew-topic-form.png</path>
+  </screenshot>
+  <screenshot>
+    <description>Forum listing page</description>
+    <path>screenshots/forum-listing-page.png</path>
+  </screenshot>
+  <screenshot>
+    <description>Forum reply page</description>
+    <path>screenshots/Forum-reply-form.png</path>
+  </screenshot>
     <on_activate>izap_update_forum_subtype</on_activate>
     <category>iZAP</category>
     <admin_interface>advanced</admin_interface>
